@@ -7,7 +7,7 @@
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="NumeroEmp" id="628ECD40-EB83-5BE2-DEFC-F440679603D8">
+<Column name="NumEmp" id="628ECD40-EB83-5BE2-DEFC-F440679603D8">
 <createdBy>201093812</createdBy>
 <createdTime>2014-01-28 13:14:25 UTC</createdTime>
 <generatorID>Généré par l&apos;utilisateur</generatorID>
@@ -19,7 +19,7 @@
 <dataTypeScale>5</dataTypeScale>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Nom" id="24F5A51C-EA99-FBC5-D381-4367907EED6D">
+<Column name="Nomemp" id="24F5A51C-EA99-FBC5-D381-4367907EED6D">
 <createdBy>201093812</createdBy>
 <createdTime>2014-01-28 13:14:25 UTC</createdTime>
 <generatorID>Généré par l&apos;utilisateur</generatorID>
@@ -30,7 +30,7 @@
 <dataTypeSize>40</dataTypeSize>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Prenom" id="4A689512-C8D5-223E-A813-84181CE2D3CA">
+<Column name="Prenomemp" id="4A689512-C8D5-223E-A813-84181CE2D3CA">
 <createdBy>201093812</createdBy>
 <createdTime>2014-01-28 13:14:25 UTC</createdTime>
 <generatorID>Généré par l&apos;utilisateur</generatorID>
@@ -42,7 +42,7 @@
 <dataTypeSize>40</dataTypeSize>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Adresse" id="B0578E62-4B1F-7EFF-55A4-68E7ACDBE586">
+<Column name="Salaireemp" id="B0578E62-4B1F-7EFF-55A4-68E7ACDBE586">
 <createdBy>201093812</createdBy>
 <createdTime>2014-01-28 13:14:25 UTC</createdTime>
 <generatorID>Généré par l&apos;utilisateur</generatorID>
@@ -50,11 +50,12 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>40</dataTypeSize>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>8</dataTypeScale>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Telephone" id="C888CCEE-95DC-C323-EB6D-5D732C35B5A4">
+<Column name="DateEmbauche" id="C888CCEE-95DC-C323-EB6D-5D732C35B5A4">
 <createdBy>201093812</createdBy>
 <createdTime>2014-01-28 13:14:25 UTC</createdTime>
 <generatorID>Généré par l&apos;utilisateur</generatorID>
@@ -62,11 +63,10 @@
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT025</logicalDatatype>
-<dataTypeSize>10</dataTypeSize>
+<logicalDatatype>LOGDT007</logicalDatatype>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="CodeDep" id="7391758E-5D74-D0D3-A47F-2B0D6345A8DE">
+<Column name="CodeDept" id="7391758E-5D74-D0D3-A47F-2B0D6345A8DE">
 <createdBy>201093812</createdBy>
 <createdTime>2014-01-28 13:29:48 UTC</createdTime>
 <generatorID>Généré par l&apos;utilisateur</generatorID>
@@ -79,6 +79,22 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="A83A9F0C-7489-5AE7-60DD-A9DC98FF2E18" referredColumn="3E4460BB-1476-1C65-C8EE-D16E9DFAFF21"/>
+</associations>
+</Column>
+<Column name="NumempResp" id="B1DA1E28-E869-5CD9-FCEC-BD882302DDCC">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 14:32:07 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleQuestion 2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>5</dataTypeScale>
+<delegate>628ECD40-EB83-5BE2-DEFC-F440679603D8</delegate>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9B84D09A-8C00-CB49-E44A-310A1826DACC" referredColumn="628ECD40-EB83-5BE2-DEFC-F440679603D8"/>
 </associations>
 </Column>
 </columns>
@@ -95,6 +111,16 @@
 <colUsage columnID="628ECD40-EB83-5BE2-DEFC-F440679603D8"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="8CA01CEB-2AA7-B5CB-8B56-778F59DC7549" name="Employes__IDX">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 14:35:53 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleQuestion 2</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="24F5A51C-EA99-FBC5-D381-4367907EED6D"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="E3890F7C-14F5-6E99-8837-4701AD1D81A2" name="Employes_Departements_FK">
 <createdBy>201093812</createdBy>
 <createdTime>2014-01-28 13:30:03 UTC</createdTime>
@@ -104,6 +130,17 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="7391758E-5D74-D0D3-A47F-2B0D6345A8DE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="059602C5-FC05-657E-A3D9-172C2CB04C36" name="Employes_Employes_FK">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 14:33:00 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleQuestion 2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B1DA1E28-E869-5CD9-FCEC-BD882302DDCC"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
