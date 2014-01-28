@@ -1,0 +1,91 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CE60F331-47B3-9C1C-6748-C9798451368B" name="Occupation">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:19:34 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NumeroEmp" id="4EAEE28C-117A-87BA-3B95-70BF800BF3BF">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:21:22 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>5</dataTypeScale>
+<delegate>628ECD40-EB83-5BE2-DEFC-F440679603D8</delegate>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="871CF891-C6AE-A5D1-AE40-96F855DB7F5B" referredColumn="628ECD40-EB83-5BE2-DEFC-F440679603D8"/>
+</associations>
+</Column>
+<Column name="NumFonction" id="991FD99B-B062-762C-237A-130C6F19915F">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:21:22 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<delegate>21DBBCA3-DE6C-B498-8B2C-15C3419EBA56</delegate>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="ACD37BEF-AD86-C822-F912-02AE015737AC" referredColumn="21DBBCA3-DE6C-B498-8B2C-15C3419EBA56"/>
+</associations>
+</Column>
+<Column name="Date" id="6399BC86-3500-D7D1-39CC-D1670DEFFF5B">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:21:42 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F14FAF12-EC47-9510-9880-CDCD7DF4E2B1" name="Occupation_PK">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:21:42 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4EAEE28C-117A-87BA-3B95-70BF800BF3BF"/>
+<colUsage columnID="6399BC86-3500-D7D1-39CC-D1670DEFFF5B"/>
+<colUsage columnID="991FD99B-B062-762C-237A-130C6F19915F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E92E87A8-2EBF-CA1F-28A7-2FF3AE9D8F00" name="Occupation_Employes_FK">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:23:37 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4EAEE28C-117A-87BA-3B95-70BF800BF3BF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4F44059D-A38F-3994-2CC1-5E77F8098BF0" name="Occupation_Fonctions_FK">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:23:37 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="991FD99B-B062-762C-237A-130C6F19915F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

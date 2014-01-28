@@ -1,0 +1,121 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6A615EBB-C32B-6AD3-2F6A-82CD4558721F" name="Permanent">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:41:00 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NumeroEmploye" id="412B063D-F5D8-93C4-6AB5-AB6F8A566BC8">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:42:10 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>5</dataTypeScale>
+<delegate>628ECD40-EB83-5BE2-DEFC-F440679603D8</delegate>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4396F0D0-1983-8CD3-E479-732378577D53" referredColumn="628ECD40-EB83-5BE2-DEFC-F440679603D8"/>
+</associations>
+</Column>
+<Column name="Echelon" id="F28F28EF-47CA-AB04-9315-94B4CD5CCA61">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:42:10 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>5</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Salaire" id="05E92958-76A0-8F52-29AA-4822906E429A">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:42:36 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>7</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Responsable" id="48A5BC13-C1B8-98FD-857E-269F04187422">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:47:43 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>5</dataTypeScale>
+<delegate>412B063D-F5D8-93C4-6AB5-AB6F8A566BC8</delegate>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AECF540C-D8D5-F915-64C3-A232109D7195" referredColumn="412B063D-F5D8-93C4-6AB5-AB6F8A566BC8"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="18718495-DAF7-B7B0-6DCE-179AD8E1ABF2" name="Permanent_PK">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:42:10 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="412B063D-F5D8-93C4-6AB5-AB6F8A566BC8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="68D52D3B-6A42-EE86-A952-CCE46E4B43C5" name="Permanent_Employes_FK">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:42:50 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="2A1D3DEC-3D11-9B46-D2A5-7785778DACB8" name="Permanent_Permanent_FK">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:47:43 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="5694E372-0B38-BA3A-8D03-0E7AAD12C5E3" name="Permanent_Employes_FKv2">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:52:03 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="412B063D-F5D8-93C4-6AB5-AB6F8A566BC8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EFE14379-D09D-544A-733E-6C00FF211760" name="Permanent_Permanent_FKv2">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:52:46 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="48A5BC13-C1B8-98FD-857E-269F04187422"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

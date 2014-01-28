@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="2E9C1670-838B-9AD6-521F-45FBBBEF8B5F" name="Pigiste_Employes_FK">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:55:13 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleTp1</ownerDesignName>
+<containerWithKeyObject>FB1AEB33-C3BA-DBEA-175A-FBFCFBAC47C2</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>DC6CA94C-5EDC-888F-7D87-6398857597F7</localFKIndex>
+<keyObject>61A88782-6EE3-CC53-6A7A-C99AEC74F499</keyObject>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

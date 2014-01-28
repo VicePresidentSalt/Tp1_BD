@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.relational.RelationalDesign>
+   <object objectType="Table" objectID="27EF020D-DA81-FD33-217C-A7066D9154B9" name="Departements" seqName="seg_0"/>
+   <object objectType="Table" objectID="5AB0C320-D476-3AD1-0D3D-C6FAFE16524C" name="Employes" seqName="seg_0"/>
+   <object objectType="Table" objectID="B2FA2F31-3498-9F18-CF10-38AC57E10B2F" name="Entreprise" seqName="seg_0"/>
+   <object objectType="Table" objectID="A8DF2647-21C8-71DE-2492-1B2AA41902F2" name="Fonctions" seqName="seg_0"/>
+   <object objectType="Table" objectID="CE60F331-47B3-9C1C-6748-C9798451368B" name="Occupation" seqName="seg_0"/>
+   <object objectType="Table" objectID="6A615EBB-C32B-6AD3-2F6A-82CD4558721F" name="Permanent" seqName="seg_0"/>
+   <object objectType="Table" objectID="FB1AEB33-C3BA-DBEA-175A-FBFCFBAC47C2" name="Pigiste" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="7548A899-1DA3-DBE9-8DB9-1BCDFC9AE417" name="Departements_Entreprise_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="C48F8B55-54DF-8DB8-123E-9BEB693091F4" name="Departements_Permanent_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="A83A9F0C-7489-5AE7-60DD-A9DC98FF2E18" name="Employes_Departements_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="871CF891-C6AE-A5D1-AE40-96F855DB7F5B" name="Occupation_Employes_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="ACD37BEF-AD86-C822-F912-02AE015737AC" name="Occupation_Fonctions_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="4396F0D0-1983-8CD3-E479-732378577D53" name="Permanent_Employes_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="AECF540C-D8D5-F915-64C3-A232109D7195" name="Permanent_Permanent_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="2E9C1670-838B-9AD6-521F-45FBBBEF8B5F" name="Pigiste_Employes_FK" seqName="seg_0"/>
+</oracle.dbtools.crest.model.design.relational.RelationalDesign>
