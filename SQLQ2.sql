@@ -18,7 +18,7 @@ CREATE TABLE Employes
     Salaireemp   NUMBER (2,8) ,
     DateEmbauche DATE ,
     CodeDept     CHAR (5) NOT NULL ,
-    NumempResp   NUMBER NOT NULL
+    NumempResp   NUMBER
   ) ;
 CREATE INDEX Employes__IDX ON Employes
   ( Nomemp ASC
@@ -59,3 +59,35 @@ ALTER TABLE Employes ADD CONSTRAINT Employes_Employes_FK FOREIGN KEY ( NumempRes
 ALTER TABLE Occupation ADD CONSTRAINT Occupation_Employes_FK FOREIGN KEY ( NumeroEmp ) REFERENCES Employes ( NumEmp ) ;
 
 ALTER TABLE Occupation ADD CONSTRAINT Occupation_Fonctions_FK FOREIGN KEY ( NumFonction ) REFERENCES Fonctions ( CodeFonction ) ;
+
+Alter Table Employes modify Salaireemp Number(8,2);
+
+Alter table Employes modify Numempresp null;
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+--Question 3
+
+--1
+Insert into Departements Values (2,'World 2-1','10-01-01');
+Insert into Departements Values (3,'World 3-4','11-02-01');
+Insert into Departements Values (4,'World 5-2','11-03-01');
+Insert into Departements Values (5,'Bureau Chef Bowser','10-01-01');
+
+Insert into Employes Values (2,'Bros','Mario',25000,'11-01-01','2',NULL);
+Insert into Employes Values (3,'Bros','Luigi',20000,'11-01-01','2',2);
+Insert into Employes Values (4,'Toadstool','Peach',24000,'11-02-01','3',2);
+Insert into Employes Values (5,'Koopa','Paratroopa',25000,'11-01-01','3',2);
+Insert into Employes Values (6,'Bros','Wario',23000,'11-01-01','3',2);
+Insert into Employes Values (7,'Koopa','Wendy',11000,'12-01-01','5',5);
+Insert into Employes Values (8,'Koopa','Larry',12000,'12-01-01','5',5);
+Insert into Employes Values (9,'Koopa','Bowser',17500,'11-01-01','5',2);
+
+--2
+Select * from Employes where dateembauche >'11-01-21';
+
+--3
+
+
+
