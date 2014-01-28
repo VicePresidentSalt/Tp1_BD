@@ -1,0 +1,65 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FB1AEB33-C3BA-DBEA-175A-FBFCFBAC47C2" name="Pigiste">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:44:30 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleQuestion 2</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NumeroEmploye" id="ADA407D2-9CA4-85F3-B18B-F4A27F763B5A">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:47:17 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleQuestion 2</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>0</dataTypePrecision>
+<dataTypeScale>5</dataTypeScale>
+<delegate>628ECD40-EB83-5BE2-DEFC-F440679603D8</delegate>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2E9C1670-838B-9AD6-521F-45FBBBEF8B5F" referredColumn="628ECD40-EB83-5BE2-DEFC-F440679603D8"/>
+</associations>
+</Column>
+<Column name="Taux" id="682CFB02-61B2-C671-116D-58C10DBF4E0D">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:47:17 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleQuestion 2</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<dataTypeScale>4</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="48DD5C3F-32E7-72AF-0669-FAD1553A4011" name="Pigiste_PK">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:47:17 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleQuestion 2</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ADA407D2-9CA4-85F3-B18B-F4A27F763B5A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DC6CA94C-5EDC-888F-7D87-6398857597F7" name="Pigiste_Employes_FK">
+<createdBy>201093812</createdBy>
+<createdTime>2014-01-28 13:55:13 UTC</createdTime>
+<generatorID>Généré par l&apos;utilisateur</generatorID>
+<ownerDesignName>ModeleQuestion 2</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ADA407D2-9CA4-85F3-B18B-F4A27F763B5A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
