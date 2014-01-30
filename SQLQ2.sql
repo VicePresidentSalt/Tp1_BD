@@ -12,8 +12,7 @@ CREATE TABLE Departements
 ALTER TABLE Departements ADD CONSTRAINT Departements_PK PRIMARY KEY
 (
   CodeDep
-)
-;
+);
 
 CREATE TABLE Employes
   (
@@ -41,7 +40,7 @@ CREATE TABLE Fonctions
   ) ;
 ALTER TABLE Fonctions ADD CONSTRAINT Fonctions_PK PRIMARY KEY
 (
-  CodeFonction
+  NumFonction
 )
 ;
 
@@ -63,7 +62,7 @@ ALTER TABLE Employes ADD CONSTRAINT Employes_Employes_FK FOREIGN KEY ( NumempRes
 
 ALTER TABLE Occupation ADD CONSTRAINT Occupation_Employes_FK FOREIGN KEY ( NumeroEmp ) REFERENCES Employes ( NumEmp ) ;
 
-ALTER TABLE Occupation ADD CONSTRAINT Occupation_Fonctions_FK FOREIGN KEY ( NumFonction ) REFERENCES Fonctions ( CodeFonction ) ;
+ALTER TABLE Occupation ADD CONSTRAINT Occupation_Fonctions_FK FOREIGN KEY ( NumFonction ) REFERENCES Fonctions ( NumFonction ) ;
 
 Alter Table Employes modify Salaireemp Number(8,2);
 
@@ -72,7 +71,8 @@ Alter table Employes modify Numempresp null;
 Alter table Employes ADD Constraint CK_Salaire CHECK (Salaireemp > 0 and Salaireemp < 500000); 
 
 CREATE SEQUENCE SEQEMP INCREMENT BY 1 
-START WITH 0;
+START WITH 0
+minvalue 0;
 
 create or replace 
 trigger EMPINC
