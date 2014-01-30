@@ -64,6 +64,8 @@ Alter Table Employes modify Salaireemp Number(8,2);
 
 Alter table Employes modify Numempresp null;
 
+Alter table Employes ADD Constraint CK_Salaire CHECK (Salaireemp > 0 and Salaireemp < 500000); 
+
 
 -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -88,6 +90,6 @@ Insert into Employes Values (9,'Koopa','Bowser',17500,'11-01-01','5',2);
 Select * from Employes where dateembauche >'11-01-21';
 
 --3
-
+Select count(
 
 
