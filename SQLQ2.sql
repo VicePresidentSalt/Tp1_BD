@@ -116,3 +116,55 @@ group by nomdept;--Pas fini
 select nomdept from departements 
 where nomdept = ( select 
 
+--5
+
+
+
+
+
+--6
+
+
+
+
+
+--7
+
+
+
+
+--8
+
+
+
+
+--9
+
+
+--10
+
+
+
+--11
+
+
+
+
+--12
+
+
+
+
+
+
+--13
+
+
+
+
+--14
+CREATE PUBLIC SYNONYM Employes FOR cotefran.employes;
+
+--15
+grant all on Employes to stlauren with grant option;
+grant select on cotejoueurs to public;
