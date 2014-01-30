@@ -1,3 +1,8 @@
+Drop table Occupation;
+Drop table Fonctions;
+Drop table Employes;
+DROP TABLE Departements;
+
 CREATE TABLE Departements
   (
     CodeDep      CHAR (5) NOT NULL ,
@@ -31,7 +36,7 @@ ALTER TABLE Employes ADD CONSTRAINT Employes_PK PRIMARY KEY
 
 CREATE TABLE Fonctions
   (
-    CodeFonction NUMBER NOT NULL ,
+    NumFonction NUMBER NOT NULL ,
     NomFonction  VARCHAR2 (40) NOT NULL
   ) ;
 ALTER TABLE Fonctions ADD CONSTRAINT Fonctions_PK PRIMARY KEY
@@ -66,6 +71,17 @@ Alter table Employes modify Numempresp null;
 
 Alter table Employes ADD Constraint CK_Salaire CHECK (Salaireemp > 0 and Salaireemp < 500000); 
 
+CREATE SEQUENCE SEQEMP INCREMENT BY 1 
+START WITH 0;
+
+create or replace 
+trigger EMPINC
+BEFORE INSERT ON Employes
+for each row
+BEGIN
+ if :new.numemp is null then select SEQEMP.nextval into :new.numemp from dual;
+END if;
+end;
 
 -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -91,5 +107,4 @@ Select * from Employes where dateembauche >'11-01-21';
 
 --3
 Select count(
-
 
