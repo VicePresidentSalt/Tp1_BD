@@ -106,5 +106,5 @@ Insert into Employes Values (9,'Koopa','Bowser',17500,'11-01-01','5',2);
 Select * from Employes where dateembauche >'11-01-21';
 
 --3
-Select count(
+Select count(e.numemp) AS NbEmploye ,d.nomdept from employe
 
