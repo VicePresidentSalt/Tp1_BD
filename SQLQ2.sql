@@ -5,14 +5,16 @@ DROP TABLE Departements;
 
 CREATE TABLE Departements
   (
-    CodeDep      CHAR (5) NOT NULL ,
-    NomDep       VARCHAR2 (40) NOT NULL ,
+    CodeDept      CHAR (5) NOT NULL ,
+    NomDept       VARCHAR2 (40) NOT NULL ,
     DateCreation DATE
   ) ;
 ALTER TABLE Departements ADD CONSTRAINT Departements_PK PRIMARY KEY
 (
-  CodeDep
-);
+   CodeDept
+)
+;
+
 
 CREATE TABLE Employes
   (
@@ -106,5 +108,11 @@ Insert into Employes Values (9,'Koopa','Bowser',17500,'11-01-01','5',2);
 Select * from Employes where dateembauche >'11-01-21';
 
 --3
-Select count(e.numemp) AS NbEmploye ,d.nomdept from employe
+Select count(e.numemp) AS NbEmploye ,d.nomdept from employes e inner join 
+departements d on d.codedept = e.codedept
+group by nomdept;--Pas fini
+
+--4
+select nomdept from departements 
+where nomdept = ( select 
 
