@@ -95,14 +95,14 @@ Insert into Departements Values (3,'World 3-4','11-02-01');
 Insert into Departements Values (4,'World 5-2','11-03-01');
 Insert into Departements Values (5,'Bureau Chef Bowser','10-01-01');
 
-Insert into Employes Values (2,'Bros','Mario',25000,'11-01-01','2',NULL);
-Insert into Employes Values (3,'Bros','Luigi',20000,'11-01-01','2',2);
-Insert into Employes Values (4,'Toadstool','Peach',24000,'11-02-01','3',2);
-Insert into Employes Values (5,'Koopa','Paratroopa',25000,'11-01-01','3',2);
-Insert into Employes Values (6,'Bros','Wario',23000,'11-01-01','3',2);
-Insert into Employes Values (7,'Koopa','Wendy',11000,'12-01-01','5',5);
-Insert into Employes Values (8,'Koopa','Larry',12000,'12-01-01','5',5);
-Insert into Employes Values (9,'Koopa','Bowser',17500,'11-01-01','5',2);
+Insert into Employes Values ('Bros','Mario',25000,'11-01-01','2',NULL);
+Insert into Employes Values ('Bros','Luigi',20000,'11-01-01','2',2);
+Insert into Employes Values ('Toadstool','Peach',24000,'11-02-01','3',2);
+Insert into Employes Values ('Koopa','Paratroopa',25000,'11-01-01','3',2);
+Insert into Employes Values ('Bros','Wario',23000,'11-01-01','3',2);
+Insert into Employes Values ('Koopa','Wendy',11000,'12-01-01','5',5);
+Insert into Employes Values ('Koopa','Larry',12000,'12-01-01','5',5);
+Insert into Employes Values ('Koopa','Bowser',17500,'11-01-01','5',2);
 
 --2
 Select * from Employes where dateembauche >'11-01-21';
