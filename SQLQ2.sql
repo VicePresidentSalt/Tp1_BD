@@ -127,7 +127,7 @@ Select * from Employes where dateembauche >'11-01-21';
 --3
 Select count(e.numemp) AS NbEmploye ,d.nomdept from employes e inner join 
 departements d on d.codedept = e.codedept
-group by nomdept;--Pas fini
+group by nomdept;
 
 --4
 select nomdept from departements 
@@ -150,16 +150,11 @@ Where NbEmployes = 0;
 
 --7
 Select E.Nomemp , D.CodeDept 
-From Employes E Inner Join Employes E on D.codedept = E.Codedept
-Where D.CodeDept = ( Select D.CodeDept , E.Nomemp
-                     From Employes  
+From Employes E Inner Join Departements D on D.codedept = E.Codedept
+Where D.CodeDept = ( Select CodeDept
+                     From Employes
                      Where NomEmp = 'Savard'
                 );
-
- Select D.CodeDept , E.Nomemp
- From Employes E inner Join Departements D on E.Codedept = D.CodeDept
-Where E.NomEmp = 'Savard'
-Select nomemp from employes;
 --8
 
 
