@@ -24,7 +24,7 @@ CREATE TABLE Employes
     Salaireemp   NUMBER (2,8) ,
     DateEmbauche DATE ,
     CodeDept     CHAR (5) NOT NULL ,
-    NumempResp   NUMBER
+    NumempResp   NUMBER 
   ) ;
 CREATE INDEX Employes__IDX ON Employes
   ( Nomemp ASC
@@ -60,7 +60,7 @@ ALTER TABLE Occupation ADD CONSTRAINT Occupation_PK PRIMARY KEY
 
 ALTER TABLE Employes ADD CONSTRAINT Employes_Departements_FK FOREIGN KEY ( CodeDept ) REFERENCES Departements ( CodeDept ) ;
 
-ALTER TABLE Employes ADD CONSTRAINT Employes_Employes_FK FOREIGN KEY ( NumempResp ) REFERENCES Employes ( NumEmp ) ;
+
 
 ALTER TABLE Occupation ADD CONSTRAINT Occupation_Employes_FK FOREIGN KEY ( NumeroEmp ) REFERENCES Employes ( NumEmp ) ;
 
@@ -69,6 +69,8 @@ ALTER TABLE Occupation ADD CONSTRAINT Occupation_Fonctions_FK FOREIGN KEY ( NumF
 Alter Table Employes modify Salaireemp Number(8,2);
 
 Alter table Employes modify Numempresp null;
+
+ALTER TABLE Employes ADD CONSTRAINT Employes_Employes_FK FOREIGN KEY ( NumempResp ) REFERENCES Employes ( NumEmp ) ;
 
 Alter table Employes ADD Constraint CK_Salaire CHECK (Salaireemp > 0 and Salaireemp < 500000); 
 
@@ -95,14 +97,29 @@ Insert into Departements Values (3,'World 3-4','11-02-01');
 Insert into Departements Values (4,'World 5-2','11-03-01');
 Insert into Departements Values (5,'Bureau Chef Bowser','10-01-01');
 
-Insert into Employes Values ('Bros','Mario',25000,'11-01-01','2',NULL);
-Insert into Employes Values ('Bros','Luigi',20000,'11-01-01','2',2);
-Insert into Employes Values ('Toadstool','Peach',24000,'11-02-01','3',2);
-Insert into Employes Values ('Koopa','Paratroopa',25000,'11-01-01','3',2);
-Insert into Employes Values ('Bros','Wario',23000,'11-01-01','3',2);
-Insert into Employes Values ('Koopa','Wendy',11000,'12-01-01','5',5);
-Insert into Employes Values ('Koopa','Larry',12000,'12-01-01','5',5);
-Insert into Employes Values ('Koopa','Bowser',17500,'11-01-01','5',2);
+ALTER TABLE Employes Drop CONSTRAINT Employes_Employes_FK
+
+Insert into Employes 
+(nomemp,prenomemp,salaireemp,dateembauche,codedept) Values('Bros','Mario',25000,'11-01-01','2');
+
+ALTER TABLE Employes ADD CONSTRAINT Employes_Employes_FK FOREIGN KEY ( NumempResp ) REFERENCES Employes ( NumEmp ) ;
+
+Insert into Employes 
+(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Bros','Luigi',20000,'11-01-01','2',2);
+Insert into Employes 
+(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Toadstool','Peach',24000,'11-02-01','3',2);
+Insert into Employes 
+(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Koopa','Paratroopa',25000,'11-01-01','3',2);
+Insert into Employes 
+(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Bros','Wario',23000,'11-01-01','3',2);
+Insert into Employes
+(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp )Values ('Koopa','Wendy',11000,'12-01-01','5',5);
+Insert into Employes 
+(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Koopa','Larry',12000,'12-01-01','5',5);
+Insert into Employes 
+(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Koopa','Bowser',17500,'11-01-01','5',2);
+Insert into Employes 
+(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Savard','Fafard',1,'11-01-01','5',2);
 
 --2
 Select * from Employes where dateembauche >'11-01-21';
@@ -123,16 +140,26 @@ where nomdept = ( select
 
 
 --6
+Select nomdept , Count(E.CodeDept) As NbEmployes 
+From Departements D inner join Employes E on E.CodeDept = D.Codedept
+Where NbEmployes = 0;
 
-
+--FUCK YOU CALISS SA MARCHE PAS
 
 
 
 --7
+Select E.Nomemp , D.CodeDept 
+From Employes E Inner Join Employes E on D.codedept = E.Codedept
+Where D.CodeDept = ( Select D.CodeDept , E.Nomemp
+                     From Employes  
+                     Where NomEmp = 'Savard'
+                );
 
-
-
-
+ Select D.CodeDept , E.Nomemp
+ From Employes E inner Join Departements D on E.Codedept = D.CodeDept
+Where E.NomEmp = 'Savard'
+Select nomemp from employes;
 --8
 
 
