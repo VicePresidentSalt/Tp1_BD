@@ -121,6 +121,8 @@ Insert into Employes
 Insert into Employes 
 (nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Savard','Fafard',1,'11-01-01','5',2);
 
+
+
 --2
 Select * from Employes where dateembauche >'11-01-21';
 
@@ -134,13 +136,18 @@ select nomdept from departements
 where nomdept = ( select 
 
 --5
-
+Select E.Nomemp , D.CodeDept 
+From Employes E Inner Join Departements D on D.codedept = E.Codedept
+Where D.CodeDept = ( Select CodeDept
+                     From Employes
+                     Where NomEmp = 'Savard'
+                );
 
 
 
 
 --6
-Select nomdept , Count(E.CodeDept) As NbEmployes 
+Select E.nomdept ,
 From Departements D inner join Employes E on E.CodeDept = D.Codedept
 Where NbEmployes = 0;
 
@@ -149,35 +156,48 @@ Where NbEmployes = 0;
 
 
 --7
-Select E.Nomemp , D.CodeDept 
-From Employes E Inner Join Departements D on D.codedept = E.Codedept
-Where D.CodeDept = ( Select CodeDept
-                     From Employes
-                     Where NomEmp = 'Savard'
-                );
+Select max(salaireemp) as MaxSalaire , Nomemp
+from Employes;
+--Afficher le fuckin nom
+
+
 --8
+Update Employes set SalaireEmp = ( Salaireemp + (SalaireEmp * 0.02) )
+where dateembauche > '01-JAN-09';
 
-
-
+--MOIS DATE DE MARDE SON MON LAPTOP A REGARDER SEEMS TO WORK
 
 --9
 
 
+
 --10
+--Select nomemp,prenomemp , numempresp
+--From Employes
+--Where numempresp = '28'
 
-
+Select nomemp,prenomemp , numempresp
+From Employes
+Where numempresp =( Select numemp , nomemp
+                    from Employes
+                    where nomemp = 'Savard'
+                    );
+-- Caliss jsais pas comment aller chercher juste son nom en ayant un numresp en parametre 
+--A revenir
 
 --11
-
+Select nomemp , numempresp
+From Employes
+where nomemp = 'Savard';
 
 
 
 --12
+Select nomemp,prenomemp,numempresp
+from Employes
+where numempresp = null;
 
-
-
-
-
+--Bonne requete mais ne reconnais pas le numempresp a null ... À revenir
 
 --13
 
