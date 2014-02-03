@@ -48,7 +48,7 @@ ALTER TABLE Fonctions ADD CONSTRAINT Fonctions_PK PRIMARY KEY
 
 CREATE TABLE Occupation
   (
-    NumeroEmp   NUMBER NOT NULL ,
+    NumEmp   NUMBER NOT NULL ,
     NumFonction NUMBER NOT NULL ,
     "Date"      DATE NOT NULL
   ) ;
@@ -62,7 +62,7 @@ ALTER TABLE Employes ADD CONSTRAINT Employes_Departements_FK FOREIGN KEY ( CodeD
 
 
 
-ALTER TABLE Occupation ADD CONSTRAINT Occupation_Employes_FK FOREIGN KEY ( NumeroEmp ) REFERENCES Employes ( NumEmp ) ;
+ALTER TABLE Occupation ADD CONSTRAINT Occupation_Employes_FK FOREIGN KEY ( NumEmp ) REFERENCES Employes ( NumEmp ) ;
 
 ALTER TABLE Occupation ADD CONSTRAINT Occupation_Fonctions_FK FOREIGN KEY ( NumFonction ) REFERENCES Fonctions ( NumFonction ) ;
 
@@ -177,7 +177,10 @@ where dateembauche > '09-01-01';
 --MOIS DATE DE MARDE SON MON LAPTOP A REGARDER SEEMS TO WORK
 
 --9
-
+CREATE VIEW ViewEmployes AS
+SELECT E.NomEmp,E.PrenomEmp,F.NomFonction,O.DateOccupation,E.SalaireEmp
+FROM Employes E inner join Occupation O on O.Numemp = E.Numemp Inner join Fonctions F on F.NumFonction = O.NumFonction
+Order by E.NomEmp;
 
 
 --10
