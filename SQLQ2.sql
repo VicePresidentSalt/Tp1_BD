@@ -50,25 +50,21 @@ CREATE TABLE Occupation
   (
     NumEmp   NUMBER NOT NULL ,
     NumFonction NUMBER NOT NULL ,
-    "Date"      DATE NOT NULL
+    DateEmp      DATE NOT NULL
   ) ;
 ALTER TABLE Occupation ADD CONSTRAINT Occupation_PK PRIMARY KEY
 (
-  NumeroEmp, "Date", NumFonction
+  NumEmp, NumFonction, DateEmp
 )
 ;
 
 ALTER TABLE Employes ADD CONSTRAINT Employes_Departements_FK FOREIGN KEY ( CodeDept ) REFERENCES Departements ( CodeDept ) ;
-
-
 
 ALTER TABLE Occupation ADD CONSTRAINT Occupation_Employes_FK FOREIGN KEY ( NumEmp ) REFERENCES Employes ( NumEmp ) ;
 
 ALTER TABLE Occupation ADD CONSTRAINT Occupation_Fonctions_FK FOREIGN KEY ( NumFonction ) REFERENCES Fonctions ( NumFonction ) ;
 
 Alter Table Employes modify Salaireemp Number(8,2);
-
-Alter table Employes modify Numempresp null;
 
 ALTER TABLE Employes ADD CONSTRAINT Employes_Employes_FK FOREIGN KEY ( NumempResp ) REFERENCES Employes ( NumEmp ) ;
 
@@ -96,22 +92,19 @@ Insert into Departements Values (2,'World 2-1','10-01-01');
 Insert into Departements Values (3,'World 3-4','11-02-01');
 Insert into Departements Values (4,'World 5-2','11-03-01');
 Insert into Departements Values (5,'Bureau Chef Bowser','10-01-01');
+Insert into Departements Values (6,'Bureau Chef FABIEN','13-01-01');
 
-ALTER TABLE Employes Drop CONSTRAINT Employes_Employes_FK
 
 Insert into Employes 
 (nomemp,prenomemp,salaireemp,dateembauche,codedept) Values('Bros','Mario',25000,'11-01-01','2');
-
-ALTER TABLE Employes ADD CONSTRAINT Employes_Employes_FK FOREIGN KEY ( NumempResp ) REFERENCES Employes ( NumEmp ) ;
-
 Insert into Employes 
-(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Bros','Luigi',20000,'11-01-01','2',2);
+(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Bros','Luigi',20000,'11-01-01','2',0);
 Insert into Employes 
-(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Toadstool','Peach',24000,'11-02-01','3',2);
+(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Toadstool','Peach',24000,'11-02-01','3',1);
 Insert into Employes 
-(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Koopa','Paratroopa',25000,'11-01-01','3',2);
+(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Koopa','Paratroopa',25000,'11-01-01','3',1);
 Insert into Employes 
-(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Bros','Wario',23000,'11-01-01','3',2);
+(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Bros','Wario',23000,'11-01-01','3',1);
 Insert into Employes
 (nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp )Values ('Koopa','Wendy',11000,'12-01-01','5',5);
 Insert into Employes 
@@ -120,22 +113,43 @@ Insert into Employes
 (nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Koopa','Bowser',17500,'11-01-01','5',2);
 Insert into Employes 
 (nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Savard','Fafard',1,'11-01-01','5',2);
+Insert into Employes 
+(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Savard','LESCLAVEA',1,'11-01-01','5',8);
 
 
+
+Insert into Fonctions VALUES (11,'Nettoyeur de tuyau');
+Insert into Fonctions VALUES (12,'Sauver des princesses');
+Insert into Fonctions VALUES (13,'Rien Foutre');
+
+
+Insert into Occupation VALUES (0,12,'11-01-01');
+Insert into Occupation VALUES (1,12,'11-01-01');
+Insert into Occupation VALUES (2,13,'11-01-01');
+Insert into Occupation VALUES (3,13,'11-01-01');
+Insert into Occupation VALUES (4,13,'11-01-01');
+Insert into Occupation VALUES (5,13,'11-01-01');
+Insert into Occupation VALUES (6,13,'11-01-01');
+Insert into Occupation VALUES (7,13,'11-01-01');
+Insert into Occupation VALUES (8,11,'11-01-01');
+
+--OK
 
 --2
 Select * from Employes where dateembauche >'11-01-21';
+--Seems ok
 
 --3
 Select count(e.numemp) AS NbEmploye ,d.nomdept from employes e inner join 
 departements d on d.codedept = e.codedept
 group by nomdept;
+--OK
 
 --4
-select D.nomdept , max(E.CodeDept)
-from departements D inner join Employes E on e.codedept = d.codedept
-group by E.Codedept;
-
+select MAX ( Select COUNT(*)
+from departements D inner join Employes E on e.codedept = d.codedept)
+;
+-- a finir
 
 --5
 Select E.Nomemp , D.CodeDept 
@@ -145,23 +159,16 @@ Where D.CodeDept = ( Select CodeDept
                      Where NomEmp = 'Savard'
                     );
 
-
+--Marche pas checker
 
 
 --6
-Select E.nomdept , count(E.codedept) AS NbEmployes
-From Employes E
-Where NbEmployes = 0;
+Select D.CodeDept, NomDept FROM departements D 
+LEFT OUTER JOIN Employes E ON D.Codedept = E.Codedept 
+WHERE E.NumEmp IS NULL 
+GROUP BY D.CodeDEpt, NomDept ;
 
-Select nomdept
-From departements;
-Where (count(prenomemp) FROM Employes) = 0;
-
-select codedept
-FROM Employes;
---FUCK YOU CALISS SA MARCHE PAS
-
-
+--OK
 
 --7
 Select salaireemp as SALAIREMAX,nomemp,prenomemp
@@ -177,11 +184,13 @@ where dateembauche > '09-01-01';
 --MOIS DATE DE MARDE SON MON LAPTOP A REGARDER SEEMS TO WORK
 
 --9
+Drop View ViewEmployes;
 CREATE VIEW ViewEmployes AS
-SELECT E.NomEmp,E.PrenomEmp,F.NomFonction,O.DateOccupation,E.SalaireEmp
+SELECT E.NomEmp,E.PrenomEmp,F.NomFonction,O.DateEmp,E.SalaireEmp
 FROM Employes E inner join Occupation O on O.Numemp = E.Numemp Inner join Fonctions F on F.NumFonction = O.NumFonction
 Order by E.NomEmp;
 
+--View OK
 
 --10
                   
@@ -194,16 +203,16 @@ Connect by PRIOR numemp = Numempresp;
 
 --11
 Select nomemp , numempresp
-From Employes
+From Employes;
 --pas fini
 
 
 --12
 Select nomemp,prenomemp,numempresp
 from Employes
-where numempresp = null;
+where numempresp IS null;
 
---Bonne requete mais ne reconnais pas le numempresp a null ... À revenir
+--OK
 
 --13
 
