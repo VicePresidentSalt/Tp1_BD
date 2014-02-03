@@ -132,8 +132,10 @@ departements d on d.codedept = e.codedept
 group by nomdept;
 
 --4
-select nomdept from departements 
-where nomdept = ( select 
+select D.nomdept , max(E.CodeDept)
+from departements D inner join Employes E on e.codedept = d.codedept
+group by E.Codedept;
+
 
 --5
 Select E.Nomemp , D.CodeDept 
@@ -141,29 +143,36 @@ From Employes E Inner Join Departements D on D.codedept = E.Codedept
 Where D.CodeDept = ( Select CodeDept
                      From Employes
                      Where NomEmp = 'Savard'
-                );
+                    );
 
 
 
 
 --6
-Select E.nomdept ,
-From Departements D inner join Employes E on E.CodeDept = D.Codedept
+Select E.nomdept , count(E.codedept) AS NbEmployes
+From Employes E
 Where NbEmployes = 0;
 
+Select nomdept
+From departements;
+Where (count(prenomemp) FROM Employes) = 0;
+
+select codedept
+FROM Employes;
 --FUCK YOU CALISS SA MARCHE PAS
 
 
 
 --7
-Select max(salaireemp) as MaxSalaire , Nomemp
-from Employes;
+Select salaireemp as SALAIREMAX,nomemp,prenomemp
+from Employes
+where salaireemp = (select max(salaireemp) from Employes);
 --Afficher le fuckin nom
 
 
 --8
 Update Employes set SalaireEmp = ( Salaireemp + (SalaireEmp * 0.02) )
-where dateembauche > '01-JAN-09';
+where dateembauche > '09-01-01';
 
 --MOIS DATE DE MARDE SON MON LAPTOP A REGARDER SEEMS TO WORK
 
@@ -172,24 +181,18 @@ where dateembauche > '01-JAN-09';
 
 
 --10
---Select nomemp,prenomemp , numempresp
---From Employes
---Where numempresp = '28'
-
-Select nomemp,prenomemp , numempresp
+                  
+Select nomemp,prenomemp,numempresp
 From Employes
-Where numempresp =( Select numemp , nomemp
-                    from Employes
-                    where nomemp = 'Savard'
-                    );
--- Caliss jsais pas comment aller chercher juste son nom en ayant un numresp en parametre 
---A revenir
+START WITH nomemp ='Savard'
+Connect by PRIOR numemp = Numempresp;
+-- Is that ok?
+
 
 --11
 Select nomemp , numempresp
 From Employes
-where nomemp = 'Savard';
-
+--pas fini
 
 
 --12
