@@ -78,14 +78,14 @@ CREATE SEQUENCE SEQEMP INCREMENT BY 1
 START WITH 0
 minvalue 0;
 
-create or replace 
-trigger EMPINC
-BEFORE INSERT ON Employes
-for each row
-BEGIN
- if :new.numemp is null then select SEQEMP.nextval into :new.numemp from dual;
-END if;
-end;
+--create or replace 
+--trigger EMPINC
+--BEFORE INSERT ON Employes
+--for each row
+--BEGIN
+-- if :new.numemp is null then select SEQEMP.nextval into :new.numemp from dual;
+--END if;
+--end;
 
 -----------------------------------------------------------------------------------------------------------------------------------
 
