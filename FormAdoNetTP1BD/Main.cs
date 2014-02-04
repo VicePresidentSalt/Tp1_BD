@@ -148,7 +148,7 @@ namespace FormAdoNet
                         MessageBox.Show("La base de données est indisponible,réessayer plus tard", "Erreur 12170", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                     case 12543:
-                        MessageBox.Show("Connexion impossible,Vérifiez votre connection internet", "Erreur 12543", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Connexion impossible. Vérifiez votre connexion internet", "Erreur 12543", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                     default:
                         MessageBox.Show(Ex.Message.ToString());
@@ -259,6 +259,11 @@ namespace FormAdoNet
                     {
                         MessageBox.Show(ex.Message.ToString());
                     }
+                    catch (FormatException eXECEPTion)
+                    {
+                        MessageBox.Show(eXECEPTion.Message.ToString());
+
+                    }
                 
             }
 
@@ -294,7 +299,7 @@ namespace FormAdoNet
 
         private void BTN_Supprimer_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Êtes-vous sur de vouloir effacer cet employé ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            if (MessageBox.Show("Êtes-vous sûr de vouloir effacer cet employé ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 string sqldel = "delete from Employes where numemp = " + TB_NoEMP.Text;
                 try

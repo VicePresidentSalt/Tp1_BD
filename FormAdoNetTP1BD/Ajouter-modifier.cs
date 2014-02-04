@@ -69,7 +69,7 @@ namespace FormAdoNet
         {
             get 
             {
-                return TB_Salaire.ToString();
+                return TB_Salaire.Text;
             }
             set 
             {

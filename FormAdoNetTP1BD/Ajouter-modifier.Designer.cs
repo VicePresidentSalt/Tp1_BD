@@ -49,141 +49,144 @@
             // BTN_OK
             // 
             this.BTN_OK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.BTN_OK.Location = new System.Drawing.Point(43, 213);
+            this.BTN_OK.Location = new System.Drawing.Point(60, 213);
             this.BTN_OK.Name = "BTN_OK";
             this.BTN_OK.Size = new System.Drawing.Size(75, 23);
-            this.BTN_OK.TabIndex = 12;
+            this.BTN_OK.TabIndex = 14;
             this.BTN_OK.Text = "Ok";
             this.BTN_OK.UseVisualStyleBackColor = true;
             // 
             // BTN_CANCEL
             // 
             this.BTN_CANCEL.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.BTN_CANCEL.Location = new System.Drawing.Point(124, 213);
+            this.BTN_CANCEL.Location = new System.Drawing.Point(141, 213);
             this.BTN_CANCEL.Name = "BTN_CANCEL";
             this.BTN_CANCEL.Size = new System.Drawing.Size(75, 23);
-            this.BTN_CANCEL.TabIndex = 13;
+            this.BTN_CANCEL.TabIndex = 15;
             this.BTN_CANCEL.Text = "Annuler";
             this.BTN_CANCEL.UseVisualStyleBackColor = true;
             // 
             // DTP_Embauche
             // 
-            this.DTP_Embauche.Location = new System.Drawing.Point(111, 125);
+            this.DTP_Embauche.Location = new System.Drawing.Point(124, 125);
             this.DTP_Embauche.Name = "DTP_Embauche";
-            this.DTP_Embauche.Size = new System.Drawing.Size(100, 20);
-            this.DTP_Embauche.TabIndex = 8;
+            this.DTP_Embauche.Size = new System.Drawing.Size(123, 20);
+            this.DTP_Embauche.TabIndex = 9;
             // 
             // LB_Date
             // 
             this.LB_Date.AutoSize = true;
-            this.LB_Date.Location = new System.Drawing.Point(15, 126);
+            this.LB_Date.Location = new System.Drawing.Point(28, 126);
             this.LB_Date.Name = "LB_Date";
             this.LB_Date.Size = new System.Drawing.Size(91, 13);
-            this.LB_Date.TabIndex = 9;
+            this.LB_Date.TabIndex = 8;
             this.LB_Date.Text = "Date d\'embauche";
             // 
             // LBL_Salaire
             // 
             this.LBL_Salaire.AutoSize = true;
-            this.LBL_Salaire.Location = new System.Drawing.Point(67, 104);
+            this.LBL_Salaire.Location = new System.Drawing.Point(80, 104);
             this.LBL_Salaire.Name = "LBL_Salaire";
             this.LBL_Salaire.Size = new System.Drawing.Size(39, 13);
-            this.LBL_Salaire.TabIndex = 7;
+            this.LBL_Salaire.TabIndex = 6;
             this.LBL_Salaire.Text = "Salaire";
             // 
             // LBL_Prenom
             // 
             this.LBL_Prenom.AutoSize = true;
-            this.LBL_Prenom.Location = new System.Drawing.Point(63, 78);
+            this.LBL_Prenom.Location = new System.Drawing.Point(76, 78);
             this.LBL_Prenom.Name = "LBL_Prenom";
             this.LBL_Prenom.Size = new System.Drawing.Size(43, 13);
-            this.LBL_Prenom.TabIndex = 5;
+            this.LBL_Prenom.TabIndex = 4;
             this.LBL_Prenom.Text = "Prenom";
             // 
             // LBL_Nom
             // 
             this.LBL_Nom.AutoSize = true;
-            this.LBL_Nom.Location = new System.Drawing.Point(77, 52);
+            this.LBL_Nom.Location = new System.Drawing.Point(90, 52);
             this.LBL_Nom.Name = "LBL_Nom";
             this.LBL_Nom.Size = new System.Drawing.Size(29, 13);
-            this.LBL_Nom.TabIndex = 3;
+            this.LBL_Nom.TabIndex = 2;
             this.LBL_Nom.Text = "Nom";
             // 
             // LBL_NumEMP
             // 
             this.LBL_NumEMP.AutoSize = true;
             this.LBL_NumEMP.Enabled = false;
-            this.LBL_NumEMP.Location = new System.Drawing.Point(38, 26);
+            this.LBL_NumEMP.Location = new System.Drawing.Point(51, 26);
             this.LBL_NumEMP.Name = "LBL_NumEMP";
             this.LBL_NumEMP.Size = new System.Drawing.Size(67, 13);
-            this.LBL_NumEMP.TabIndex = 1;
+            this.LBL_NumEMP.TabIndex = 0;
             this.LBL_NumEMP.Text = "No. Employe";
             // 
             // TB_Salaire
             // 
-            this.TB_Salaire.Location = new System.Drawing.Point(111, 101);
+            this.TB_Salaire.Location = new System.Drawing.Point(124, 101);
             this.TB_Salaire.MaxLength = 6;
             this.TB_Salaire.Name = "TB_Salaire";
-            this.TB_Salaire.Size = new System.Drawing.Size(100, 20);
-            this.TB_Salaire.TabIndex = 6;
+            this.TB_Salaire.Size = new System.Drawing.Size(123, 20);
+            this.TB_Salaire.TabIndex = 7;
             this.TB_Salaire.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_Salaire_KeyPress);
             // 
             // TB_Prenom
             // 
-            this.TB_Prenom.Location = new System.Drawing.Point(111, 75);
+            this.TB_Prenom.Location = new System.Drawing.Point(124, 75);
             this.TB_Prenom.Name = "TB_Prenom";
-            this.TB_Prenom.Size = new System.Drawing.Size(100, 20);
-            this.TB_Prenom.TabIndex = 4;
+            this.TB_Prenom.Size = new System.Drawing.Size(123, 20);
+            this.TB_Prenom.TabIndex = 5;
             // 
             // TB_Nom
             // 
-            this.TB_Nom.Location = new System.Drawing.Point(111, 49);
+            this.TB_Nom.Location = new System.Drawing.Point(124, 49);
             this.TB_Nom.Name = "TB_Nom";
-            this.TB_Nom.Size = new System.Drawing.Size(100, 20);
-            this.TB_Nom.TabIndex = 2;
+            this.TB_Nom.Size = new System.Drawing.Size(123, 20);
+            this.TB_Nom.TabIndex = 3;
             this.TB_Nom.TextChanged += new System.EventHandler(this.TB_Nom_TextChanged);
             // 
             // TB_NoEMP
             // 
             this.TB_NoEMP.Enabled = false;
-            this.TB_NoEMP.Location = new System.Drawing.Point(111, 23);
+            this.TB_NoEMP.Location = new System.Drawing.Point(124, 23);
             this.TB_NoEMP.Name = "TB_NoEMP";
-            this.TB_NoEMP.Size = new System.Drawing.Size(100, 20);
-            this.TB_NoEMP.TabIndex = 0;
+            this.TB_NoEMP.Size = new System.Drawing.Size(123, 20);
+            this.TB_NoEMP.TabIndex = 1;
             // 
             // LB_Dept
             // 
             this.LB_Dept.AutoSize = true;
-            this.LB_Dept.Location = new System.Drawing.Point(9, 154);
+            this.LB_Dept.Location = new System.Drawing.Point(22, 154);
             this.LB_Dept.Name = "LB_Dept";
             this.LB_Dept.Size = new System.Drawing.Size(96, 13);
-            this.LB_Dept.TabIndex = 11;
+            this.LB_Dept.TabIndex = 10;
             this.LB_Dept.Text = "Code Departement";
             // 
             // CB_DEPT
             // 
             this.CB_DEPT.FormattingEnabled = true;
-            this.CB_DEPT.Location = new System.Drawing.Point(111, 150);
+            this.CB_DEPT.Location = new System.Drawing.Point(124, 150);
             this.CB_DEPT.Name = "CB_DEPT";
-            this.CB_DEPT.Size = new System.Drawing.Size(100, 21);
-            this.CB_DEPT.TabIndex = 10;
+            this.CB_DEPT.Size = new System.Drawing.Size(123, 21);
+            this.CB_DEPT.TabIndex = 11;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 180);
+            this.label1.Location = new System.Drawing.Point(20, 180);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 13);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 12;
             this.label1.Text = "No. Employe Resp.";
             // 
             // CB_EMPRESP
             // 
+            this.CB_EMPRESP.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.CB_EMPRESP.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CB_EMPRESP.FormattingEnabled = true;
-            this.CB_EMPRESP.Location = new System.Drawing.Point(111, 177);
+            this.CB_EMPRESP.Location = new System.Drawing.Point(124, 177);
             this.CB_EMPRESP.Name = "CB_EMPRESP";
-            this.CB_EMPRESP.Size = new System.Drawing.Size(100, 21);
-            this.CB_EMPRESP.TabIndex = 10;
+            this.CB_EMPRESP.Size = new System.Drawing.Size(123, 21);
+            this.CB_EMPRESP.TabIndex = 13;
+            this.CB_EMPRESP.Text = "0";
             // 
             // Ajouter_modifier
             // 
@@ -191,7 +194,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.BTN_CANCEL;
-            this.ClientSize = new System.Drawing.Size(238, 248);
+            this.ClientSize = new System.Drawing.Size(276, 248);
             this.Controls.Add(this.CB_EMPRESP);
             this.Controls.Add(this.CB_DEPT);
             this.Controls.Add(this.DTP_Embauche);
