@@ -239,5 +239,5 @@ CREATE PUBLIC SYNONYM Employes FOR cotefran.employes;
 
 --15
 grant all on Employes to stlauren with grant option;
-grant select on cotejoueurs to public;
+grant select on Employes to public;
 --OK
