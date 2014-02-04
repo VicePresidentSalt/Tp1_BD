@@ -141,6 +141,7 @@
             this.TB_Nom.Name = "TB_Nom";
             this.TB_Nom.Size = new System.Drawing.Size(100, 20);
             this.TB_Nom.TabIndex = 2;
+            this.TB_Nom.TextChanged += new System.EventHandler(this.TB_Nom_TextChanged);
             // 
             // TB_NoEMP
             // 
@@ -170,7 +171,6 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Enabled = false;
             this.label1.Location = new System.Drawing.Point(7, 180);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 13);

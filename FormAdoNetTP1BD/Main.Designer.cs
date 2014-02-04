@@ -73,7 +73,7 @@
             // 
             // BTN_Mod
             // 
-            this.BTN_Mod.Location = new System.Drawing.Point(364, 102);
+            this.BTN_Mod.Location = new System.Drawing.Point(382, 98);
             this.BTN_Mod.Name = "BTN_Mod";
             this.BTN_Mod.Size = new System.Drawing.Size(75, 23);
             this.BTN_Mod.TabIndex = 11;
@@ -83,7 +83,7 @@
             // 
             // BTN_Supprimer
             // 
-            this.BTN_Supprimer.Location = new System.Drawing.Point(364, 74);
+            this.BTN_Supprimer.Location = new System.Drawing.Point(382, 70);
             this.BTN_Supprimer.Name = "BTN_Supprimer";
             this.BTN_Supprimer.Size = new System.Drawing.Size(75, 23);
             this.BTN_Supprimer.TabIndex = 10;
@@ -96,7 +96,7 @@
             this.TB_NoEMP.Enabled = false;
             this.TB_NoEMP.Location = new System.Drawing.Point(241, 17);
             this.TB_NoEMP.Name = "TB_NoEMP";
-            this.TB_NoEMP.Size = new System.Drawing.Size(100, 20);
+            this.TB_NoEMP.Size = new System.Drawing.Size(117, 20);
             this.TB_NoEMP.TabIndex = 5;
             this.TB_NoEMP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_Chiffre_KeyPress);
             // 
@@ -105,7 +105,7 @@
             this.TB_Nom.Enabled = false;
             this.TB_Nom.Location = new System.Drawing.Point(241, 43);
             this.TB_Nom.Name = "TB_Nom";
-            this.TB_Nom.Size = new System.Drawing.Size(100, 20);
+            this.TB_Nom.Size = new System.Drawing.Size(117, 20);
             this.TB_Nom.TabIndex = 6;
             // 
             // TB_Prenom
@@ -113,7 +113,7 @@
             this.TB_Prenom.Enabled = false;
             this.TB_Prenom.Location = new System.Drawing.Point(241, 69);
             this.TB_Prenom.Name = "TB_Prenom";
-            this.TB_Prenom.Size = new System.Drawing.Size(100, 20);
+            this.TB_Prenom.Size = new System.Drawing.Size(117, 20);
             this.TB_Prenom.TabIndex = 7;
             this.TB_Prenom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_Duree_KeyPress);
             // 
@@ -123,7 +123,7 @@
             this.TB_Salaire.Location = new System.Drawing.Point(241, 95);
             this.TB_Salaire.MaxLength = 4;
             this.TB_Salaire.Name = "TB_Salaire";
-            this.TB_Salaire.Size = new System.Drawing.Size(100, 20);
+            this.TB_Salaire.Size = new System.Drawing.Size(117, 20);
             this.TB_Salaire.TabIndex = 8;
             this.TB_Salaire.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_Chiffre_KeyPress);
             // 
@@ -205,7 +205,7 @@
             // 
             // BTN_Add
             // 
-            this.BTN_Add.Location = new System.Drawing.Point(364, 46);
+            this.BTN_Add.Location = new System.Drawing.Point(382, 42);
             this.BTN_Add.Name = "BTN_Add";
             this.BTN_Add.Size = new System.Drawing.Size(75, 23);
             this.BTN_Add.TabIndex = 10;
@@ -227,7 +227,7 @@
             this.DTP_Embauche.Enabled = false;
             this.DTP_Embauche.Location = new System.Drawing.Point(241, 119);
             this.DTP_Embauche.Name = "DTP_Embauche";
-            this.DTP_Embauche.Size = new System.Drawing.Size(100, 20);
+            this.DTP_Embauche.Size = new System.Drawing.Size(117, 20);
             this.DTP_Embauche.TabIndex = 23;
             // 
             // CB_EMPRESP
@@ -236,7 +236,7 @@
             this.CB_EMPRESP.FormattingEnabled = true;
             this.CB_EMPRESP.Location = new System.Drawing.Point(241, 146);
             this.CB_EMPRESP.Name = "CB_EMPRESP";
-            this.CB_EMPRESP.Size = new System.Drawing.Size(100, 21);
+            this.CB_EMPRESP.Size = new System.Drawing.Size(117, 21);
             this.CB_EMPRESP.TabIndex = 25;
             // 
             // label1
@@ -252,7 +252,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 207);
+            this.ClientSize = new System.Drawing.Size(469, 209);
             this.Controls.Add(this.CB_EMPRESP);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DTP_Embauche);

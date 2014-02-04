@@ -125,7 +125,7 @@ namespace FormAdoNet
                 }
 
                 OracleCommand oraSelectEMP = conn.CreateCommand();
-                oraSelectEMP.CommandText = "SELECT NUMEMP FROM EMPLOYES WHERE NUMEMP <>" + TB_NoEMP.Text;
+                oraSelectEMP.CommandText = "SELECT NUMEMP FROM EMPLOYES";
                 using (OracleDataReader orareademp = oraSelectEMP.ExecuteReader())
                 {
                     while(orareademp.Read())
@@ -133,6 +133,22 @@ namespace FormAdoNet
                         CB_EMPRESP.Items.Add(orareademp.GetString(0));
                     }
                 }
+            }
+        }
+
+        private void TB_Nom_TextChanged(object sender, EventArgs e)
+        {
+            updateControls();
+        }
+        private void updateControls()
+        {
+            if(TB_Nom.Text =="")
+            {
+                BTN_OK.Enabled = false;
+            }
+            else
+            {
+                BTN_OK.Enabled = true;
             }
         }
     }

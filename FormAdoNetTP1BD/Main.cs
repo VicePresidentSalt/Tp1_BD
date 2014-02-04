@@ -158,20 +158,6 @@ namespace FormAdoNet
             }
         }
 
-        private void TB_Duree_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar)
-        && !char.IsDigit(e.KeyChar) && e.KeyChar != ':')
-            {
-                e.Handled = true;
-            }
-            if (e.KeyChar == ':'
-        && (sender as TextBox).Text.IndexOf(':') > -1)
-            {
-                e.Handled = true;
-            }
-        }
-
         private void ListeCompagnie_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -209,18 +195,50 @@ namespace FormAdoNet
 
         private void BTN_Add_Click(object sender, EventArgs e)
         {
-            string sqlIns = "insert into Employes(Nomemp, Prenomemp, salaireemp, dateembauche, codedept, numempresp) values (" + "'" + TB_Nom.Text + "'," + TB_Prenom.Text + "," + TB_Salaire.Text + "," + DTP_Embauche.Value.ToShortDateString() + "," + ")";
-            try
-            {
-                OracleCommand orainsert = new OracleCommand(sqlIns, conn);
-                orainsert.CommandType = CommandType.Text;
-                orainsert.ExecuteNonQuery();
+            Ajouter_modifier Ajouter = new Ajouter_modifier();
 
-                vider();
-            }
-            catch (OracleException ex)
+            Ajouter.conn = this.conn;
+            Ajouter.Text = "Modification";
+            Ajouter.CodeDept = Codedept;
+            if (Ajouter.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                MessageBox.Show(ex.Message.ToString());
+                    string sqlIns = "insert into Employes(Nomemp, Prenomemp, salaireemp, dateembauche, codedept, numempresp) "
+                        + "values (:NomEmp,:PrenomEmp,:Salaireemp,:DateEmbauche,:CodeDept,:NumEmpresp  )";
+                    try
+                    {
+
+                        OracleCommand oraAjout = new OracleCommand(sqlIns, conn);
+
+                        OracleParameter OraParaNomEmp = new OracleParameter(":NomEmp", OracleDbType.Varchar2, 40);
+                        OracleParameter OraParaPrenomEmp = new OracleParameter(":PrenomEmp", OracleDbType.Varchar2, 40);
+                        OracleParameter OraParaSalaireemp = new OracleParameter(":Salaireemp", OracleDbType.Int32, 6);  //Ajout
+                        OracleParameter OraParaDateEmbauche = new OracleParameter(":DateEmbauche", OracleDbType.Date);
+                        OracleParameter OraParaCodeDept = new OracleParameter(":CodeDept", OracleDbType.Char, 5);
+                        OracleParameter OraParaNumEmpresp = new OracleParameter(":NumEmpresp", OracleDbType.Int32, 5);
+
+                        OraParaNomEmp.Value = Ajouter.nomEmp;
+                        OraParaPrenomEmp.Value = Ajouter.prenomEmp;
+                        OraParaSalaireemp.Value = Ajouter.salaire;
+                        OraParaDateEmbauche.Value = DateTime.Parse(Ajouter.Embauche);
+                        OraParaCodeDept.Value = Ajouter.CodeDept;
+                        OraParaNumEmpresp.Value = Ajouter.Empresp;
+
+                        oraAjout.Parameters.Add(OraParaNomEmp);
+                        oraAjout.Parameters.Add(OraParaPrenomEmp);
+                        oraAjout.Parameters.Add(OraParaSalaireemp);
+                        oraAjout.Parameters.Add(OraParaDateEmbauche);
+                        oraAjout.Parameters.Add(OraParaCodeDept);
+                        oraAjout.Parameters.Add(OraParaNumEmpresp);
+
+                        oraAjout.ExecuteNonQuery();
+
+                        Lister();
+                    }
+                    catch (OracleException ex)
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
+                
             }
 
         }
@@ -308,7 +326,7 @@ namespace FormAdoNet
                     paramCodedept.Value = Modifier.CodeDept;
                     paramNumResp.Value = Modifier.Empresp;
                     paramNumemp.Value = Modifier.Numemp;
-
+                    Lister();
 
                 }
                 catch (OracleException ex)
