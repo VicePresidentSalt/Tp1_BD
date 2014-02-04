@@ -25,24 +25,7 @@ namespace FormAdoNet
 
         private void UpdateControls()
         {
-            if (conn.State.ToString() == "Open")
-            {
-
-                BTN_First.Enabled = true;
-                BTN_Mod.Enabled = true;
-                BTN_Supprimer.Enabled = true;
-                TB_NoEMP.Enabled = true;
-                TB_Prenom.Enabled = true;
-                TB_Salaire.Enabled = true;
-                TB_Nom.Enabled = true;
-                LB_Dept.Enabled = true;
-                BTN_Add.Enabled = true;
-                BTN_Fin.Enabled = true;
-                BTN_Prec.Enabled = true;
-                BTN_Suivant.Enabled = true;
-                BTN_First.Enabled = true;
-            }
-            else
+            if (conn.State.ToString() != "Open")
             {
                 BTN_First.Enabled = false;
                 BTN_Suivant.Enabled = false;
