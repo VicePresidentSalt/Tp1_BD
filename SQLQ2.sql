@@ -115,6 +115,8 @@ Insert into Employes
 (nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Savard','Fafard',1,'11-01-01','5',2);
 Insert into Employes 
 (nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Savard','LESCLAVEA',1,'11-01-01','5',8);
+Insert into Employes 
+(nomemp,prenomemp,salaireemp,dateembauche,codedept,numempresp) Values ('Bine','Chose',10000,'08-01-01','2',4);
 
 
 
@@ -137,31 +139,35 @@ Insert into Occupation VALUES (8,11,'11-01-01');
 --OK
 
 --2
-Select * from Employes where dateembauche >'11-01-21';
---Seems ok
+Select Nomemp,prenomemp from Employes where dateembauche > '11-01-21';
+--OK
 
 --3
-Select count(e.numemp) AS NbEmploye ,d.nomdept from employes e inner join 
+Select count(e.numemp) AS NbEmploye ,d.nomdept from employes e right outer join 
 departements d on d.codedept = e.codedept
-group by nomdept;
+group by nomdept
+order by nomdept;
+
 --OK
 
 --4
-select MAX ( Select COUNT(*)
-from departements D inner join Employes E on e.codedept = d.codedept)
-;
--- a finir
+Select COUNT(numemp) , d.nomdept
+from employes e inner join Departements d on e.codedept = d.codedept
+group by nomdept
+Having count(numemp) = (Select max(count(e.numemp))from employes e right outer join 
+                        departements d on d.codedept = e.codedept
+                        group by nomdept
+                        );
+--OK
 
 --5
-Select E.Nomemp , D.CodeDept 
-From Employes E Inner Join Departements D on D.codedept = E.Codedept
-Where D.CodeDept = ( Select CodeDept
-                     From Employes
-                     Where NomEmp = 'Savard'
-                    );
-
---Marche pas checker
-
+Select Nomemp,Prenomemp
+From Employes 
+Where CodeDept in ( Select Codedept
+                    From Employes
+                    Where nomemp = 'Savard'
+                  );
+--OK
 
 --6
 Select D.CodeDept, NomDept FROM departements D 
@@ -175,14 +181,12 @@ GROUP BY D.CodeDEpt, NomDept ;
 Select salaireemp as SALAIREMAX,nomemp,prenomemp
 from Employes
 where salaireemp = (select max(salaireemp) from Employes);
---Afficher le fuckin nom
-
+--OK
 
 --8
 Update Employes set SalaireEmp = ( Salaireemp + (SalaireEmp * 0.02) )
-where dateembauche > '09-01-01';
-
---MOIS DATE DE MARDE SON MON LAPTOP A REGARDER SEEMS TO WORK
+where dateembauche < '09-01-01';
+--OK
 
 --9
 Drop View ViewEmployes;
@@ -190,39 +194,50 @@ CREATE VIEW ViewEmployes AS
 SELECT E.NomEmp,E.PrenomEmp,F.NomFonction,O.DateEmp,E.SalaireEmp
 FROM Employes E inner join Occupation O on O.Numemp = E.Numemp Inner join Fonctions F on F.NumFonction = O.NumFonction
 Order by E.NomEmp;
-
 --View OK
+SELECT * FROM Employes;
 
---10
-                  
+--10                  
 Select nomemp,prenomemp,numempresp
-From Employes
-START WITH nomemp ='Savard'
+From Employes 
+where prenomemp != 'Fafard'
+START WITH prenomemp ='Fafard' and nomemp = 'Savard'
 Connect by PRIOR numemp = Numempresp;
--- Is that ok?
+--OK
+--ou
 
+--Select nomemp,prenomemp,numempresp
+--From Employes 
+--where numempresp =(Select numemp
+--                   From Employes
+--                   Where Prenomemp = 'Fafard'
+--                   );
 
 --11
-Select nomemp , numempresp
-From Employes;
---pas fini
-
+Select nomemp,prenomemp
+From Employes 
+where numemp =(Select numempresp
+               From Employes
+               Where PrenomEmp = 'Fafard'
+              );
+--OK
 
 --12
 Select nomemp,prenomemp,numempresp
 from Employes
 where numempresp IS null;
-
 --OK
 
 --13
-
-
-
+Alter table Departements add (NumempResp Number(5));
+Alter table Departements add constraint FK_DEP Foreign Key (NumempResp) References Employes (Numemp);
+--OK
 
 --14
 CREATE PUBLIC SYNONYM Employes FOR cotefran.employes;
+--OK
 
 --15
 grant all on Employes to stlauren with grant option;
 grant select on cotejoueurs to public;
+--OK
