@@ -294,20 +294,29 @@ namespace FormAdoNet
 
         private void BTN_Supprimer_Click(object sender, EventArgs e)
         {
-            string sqldel = "delete from Employes where numemp = " + TB_NoEMP.Text;
-            try
+            if (MessageBox.Show("Êtes-vous sur de vouloir effacer cet employé ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
-                OracleCommand orainsert = new OracleCommand(sqldel, conn);
-                orainsert.CommandType = CommandType.Text;
-                orainsert.ExecuteNonQuery();
+                string sqldel = "delete from Employes where numemp = " + TB_NoEMP.Text;
+                try
+                {
+                    OracleCommand orainsert = new OracleCommand(sqldel, conn);
+                    orainsert.CommandType = CommandType.Text;
+                    orainsert.ExecuteNonQuery();
 
-                vider();
+                    vider();
+                }
+                catch (OracleException ex)
+                {
+                    if (ex.Number == 2292)
+                    {
+                        MessageBox.Show("L'employé que vous tentez d'effacer a encore des employés à sa charge.", "Erreur 2292", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
-
         }
 
         private void BTN_Mod_Click(object sender, EventArgs e)
