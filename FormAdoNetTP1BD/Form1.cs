@@ -68,6 +68,7 @@ namespace FormAdoNet
             TB_Prenom.DataBindings.Add("text", Data, "Resultats.Prenomemp");
             TB_Salaire.DataBindings.Add("text", Data, "Resultats.Salaireemp");
             DTP_Embauche.DataBindings.Add("text", Data, "Resultats.DateEmbauche");
+            CB_EMPRESP.DataBindings.Add("text", Data, "Resultats.Numempresp");
         }
         private void ClearBindings()
         {
@@ -81,7 +82,9 @@ namespace FormAdoNet
             TB_Salaire.Clear();
             DTP_Embauche.DataBindings.Clear();
             DTP_Embauche.Value = DateTime.Now;
-
+            CB_EMPRESP.Text = " ";
+            CB_EMPRESP.DataBindings.Clear();
+            
         }
 
 
@@ -201,7 +204,7 @@ namespace FormAdoNet
                 }
                 
                 
-                string sqlLISTES = "select numemp, nomemp, prenomemp, salaireemp, dateembauche from employes e" + " inner join departements d on d.codedept = e.codedept where nomdept =" +
+                string sqlLISTES = "select numemp, nomemp, prenomemp, salaireemp, dateembauche, numempresp from employes e" + " inner join departements d on d.codedept = e.codedept where nomdept =" +
                     "'" + LB_Dept.Text + "'";
                 OracleDataAdapter oraliste = new OracleDataAdapter(sqlLISTES, conn);
 
