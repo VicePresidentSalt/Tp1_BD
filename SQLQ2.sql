@@ -118,6 +118,7 @@ Insert into Employes
 
 
 
+
 Insert into Fonctions VALUES (11,'Nettoyeur de tuyau');
 Insert into Fonctions VALUES (12,'Sauver des princesses');
 Insert into Fonctions VALUES (13,'Rien Foutre');
