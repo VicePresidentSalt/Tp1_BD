@@ -16,7 +16,7 @@ namespace FormAdoNet
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GestionDisque());
+            Application.Run(new GestionEmploye());
         }
     }
 }

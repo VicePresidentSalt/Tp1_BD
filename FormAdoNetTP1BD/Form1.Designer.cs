@@ -1,6 +1,6 @@
 ﻿namespace FormAdoNet
 {
-    partial class GestionDisque
+    partial class GestionEmploye
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionDisque));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionEmploye));
             this.LB_Dept = new System.Windows.Forms.ListBox();
             this.BTN_First = new System.Windows.Forms.Button();
             this.BTN_Mod = new System.Windows.Forms.Button();
@@ -48,6 +48,8 @@
             this.BTN_Add = new System.Windows.Forms.Button();
             this.LB_Date = new System.Windows.Forms.Label();
             this.DTP_Embauche = new System.Windows.Forms.DateTimePicker();
+            this.CB_EMPRESP = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // LB_Dept
@@ -61,7 +63,7 @@
             // 
             // BTN_First
             // 
-            this.BTN_First.Location = new System.Drawing.Point(167, 145);
+            this.BTN_First.Location = new System.Drawing.Point(149, 172);
             this.BTN_First.Name = "BTN_First";
             this.BTN_First.Size = new System.Drawing.Size(53, 23);
             this.BTN_First.TabIndex = 9;
@@ -91,6 +93,7 @@
             // 
             // TB_NoEMP
             // 
+            this.TB_NoEMP.Enabled = false;
             this.TB_NoEMP.Location = new System.Drawing.Point(241, 17);
             this.TB_NoEMP.Name = "TB_NoEMP";
             this.TB_NoEMP.Size = new System.Drawing.Size(100, 20);
@@ -99,6 +102,7 @@
             // 
             // TB_Nom
             // 
+            this.TB_Nom.Enabled = false;
             this.TB_Nom.Location = new System.Drawing.Point(241, 43);
             this.TB_Nom.Name = "TB_Nom";
             this.TB_Nom.Size = new System.Drawing.Size(100, 20);
@@ -106,6 +110,7 @@
             // 
             // TB_Prenom
             // 
+            this.TB_Prenom.Enabled = false;
             this.TB_Prenom.Location = new System.Drawing.Point(241, 69);
             this.TB_Prenom.Name = "TB_Prenom";
             this.TB_Prenom.Size = new System.Drawing.Size(100, 20);
@@ -114,6 +119,7 @@
             // 
             // TB_Salaire
             // 
+            this.TB_Salaire.Enabled = false;
             this.TB_Salaire.Location = new System.Drawing.Point(241, 95);
             this.TB_Salaire.MaxLength = 4;
             this.TB_Salaire.Name = "TB_Salaire";
@@ -159,7 +165,7 @@
             // 
             // BTN_Quitter
             // 
-            this.BTN_Quitter.Location = new System.Drawing.Point(12, 145);
+            this.BTN_Quitter.Location = new System.Drawing.Point(12, 172);
             this.BTN_Quitter.Name = "BTN_Quitter";
             this.BTN_Quitter.Size = new System.Drawing.Size(75, 23);
             this.BTN_Quitter.TabIndex = 11;
@@ -169,7 +175,7 @@
             // 
             // BTN_Prec
             // 
-            this.BTN_Prec.Location = new System.Drawing.Point(226, 145);
+            this.BTN_Prec.Location = new System.Drawing.Point(208, 172);
             this.BTN_Prec.Name = "BTN_Prec";
             this.BTN_Prec.Size = new System.Drawing.Size(62, 23);
             this.BTN_Prec.TabIndex = 22;
@@ -179,7 +185,7 @@
             // 
             // BTN_Suivant
             // 
-            this.BTN_Suivant.Location = new System.Drawing.Point(294, 145);
+            this.BTN_Suivant.Location = new System.Drawing.Point(276, 172);
             this.BTN_Suivant.Name = "BTN_Suivant";
             this.BTN_Suivant.Size = new System.Drawing.Size(62, 23);
             this.BTN_Suivant.TabIndex = 22;
@@ -189,7 +195,7 @@
             // 
             // BTN_Fin
             // 
-            this.BTN_Fin.Location = new System.Drawing.Point(362, 145);
+            this.BTN_Fin.Location = new System.Drawing.Point(344, 172);
             this.BTN_Fin.Name = "BTN_Fin";
             this.BTN_Fin.Size = new System.Drawing.Size(62, 23);
             this.BTN_Fin.TabIndex = 22;
@@ -218,16 +224,38 @@
             // 
             // DTP_Embauche
             // 
+            this.DTP_Embauche.Enabled = false;
             this.DTP_Embauche.Location = new System.Drawing.Point(241, 119);
             this.DTP_Embauche.Name = "DTP_Embauche";
             this.DTP_Embauche.Size = new System.Drawing.Size(100, 20);
             this.DTP_Embauche.TabIndex = 23;
             // 
-            // GestionDisque
+            // CB_EMPRESP
+            // 
+            this.CB_EMPRESP.Enabled = false;
+            this.CB_EMPRESP.FormattingEnabled = true;
+            this.CB_EMPRESP.Location = new System.Drawing.Point(241, 146);
+            this.CB_EMPRESP.Name = "CB_EMPRESP";
+            this.CB_EMPRESP.Size = new System.Drawing.Size(100, 21);
+            this.CB_EMPRESP.TabIndex = 25;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Enabled = false;
+            this.label1.Location = new System.Drawing.Point(137, 149);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 13);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "No. Employe Resp.";
+            // 
+            // GestionEmploye
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(468, 178);
+            this.ClientSize = new System.Drawing.Size(446, 207);
+            this.Controls.Add(this.CB_EMPRESP);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.DTP_Embauche);
             this.Controls.Add(this.BTN_Fin);
             this.Controls.Add(this.BTN_Suivant);
@@ -249,8 +277,8 @@
             this.Controls.Add(this.LB_Dept);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "GestionDisque";
-            this.Text = "Gestion des disques";
+            this.Name = "GestionEmploye";
+            this.Text = "Gestion des employés";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -278,6 +306,8 @@
         private System.Windows.Forms.Button BTN_Add;
         private System.Windows.Forms.Label LB_Date;
         private System.Windows.Forms.DateTimePicker DTP_Embauche;
+        private System.Windows.Forms.ComboBox CB_EMPRESP;
+        private System.Windows.Forms.Label label1;
     }
 }
 

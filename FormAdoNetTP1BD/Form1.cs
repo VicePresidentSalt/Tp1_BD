@@ -11,18 +11,17 @@ using Oracle.DataAccess.Client;
 
 namespace FormAdoNet
 {
-    public partial class GestionDisque : Form
+    public partial class GestionEmploye : Form
     {
-        private const int ANNEEMIN = 1920;
-        private int ANNEEMAX = DateTime.Today.Year;
 
-        public GestionDisque()
+        public GestionEmploye()
         {
             InitializeComponent();
         }
 
         private OracleConnection conn = new OracleConnection();
         private DataSet Data = new DataSet();
+        private string Codedept = null;
 
         private void UpdateControls()
         {
@@ -85,38 +84,13 @@ namespace FormAdoNet
 
         }
 
-        private void Getinfos()
-        {
-            try
-            {
-                string SQL = "SELECT * FROM DISQUES";
-
-                OracleDataAdapter Oraad = new OracleDataAdapter(SQL, conn);
-
-                if (Data.Tables.Contains("Resultats"))
-                {
-                    Data.Tables["Resultat"].Clear();
-                }
-                Oraad.Fill(Data, "Resultats");
-                Oraad.Dispose();
-
-                BindingSource Source = new BindingSource(Data, "Resultats");
-
-                DataDisques.DataSource = Source;
-            }
-            catch (Exception se)
-            {
-                MessageBox.Show(se.Message.ToString());
-            }
-
-        }
 
         private void Lister()
         {
             try
             {
                 LB_Dept.Items.Clear();
-                string sql = "select Nomdept from departements";
+                string sql = "select nomdept from departements";
                 OracleCommand oraCMD = new OracleCommand(sql, conn);
                 oraCMD.CommandType = CommandType.Text;
 
@@ -129,7 +103,7 @@ namespace FormAdoNet
                 LB_Dept.SelectedIndex = 0;
                 oraRead.Close();
             }
-            catch (Exception ex)
+            catch (OracleException ex)
             {
                 MessageBox.Show(ex.Message.ToString());
             }
@@ -155,13 +129,23 @@ namespace FormAdoNet
 
                 if (conn.State.ToString() == "Open")
                 {
-                    MessageBox.Show("Connecté");
-                    Getinfos();
+                    UpdateControls();
                 }
             }
-            catch
+            catch (OracleException Ex)
             {
-                MessageBox.Show(conn.State.ToString());
+                switch (Ex.Number)
+                {
+                    case 12170:
+                        MessageBox.Show("La base de données est indisponible,réessayer plus tard", "Erreur 12170", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    case 12543:
+                        MessageBox.Show("Connexion impossible,Vérifiez votre connection internet", "Erreur 12543", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    default:
+                        MessageBox.Show(Ex.Message.ToString());
+                        break;
+                }
             }
         }
 
@@ -169,6 +153,7 @@ namespace FormAdoNet
         {
             Connect();
             UpdateControls();
+            Lister();
         }
 
 
@@ -205,7 +190,17 @@ namespace FormAdoNet
         {
             try
             {
-                string sqlLISTES = "select nodisque, titredisque, dureeminutedisque, anneedisque, d.nocie from disques d" + " inner join compagniesdisque cd on d.nocie = cd.nocie where nomcie =" +
+                OracleCommand oraSelect = conn.CreateCommand();
+                oraSelect.CommandText = "select codedept from departements where nomdept = " + LB_Dept.Text;
+                using (OracleDataReader oraReader = oraSelect.ExecuteReader())
+                {
+                    if (oraReader.Read())
+                    {
+                        Codedept = oraReader.GetString(0);
+                    }
+                }
+                
+                string sqlLISTES = "select numemp, nomemp, prenomemp, salaireemp, dateembauche from employes e" + " inner join departements d on d.codedept = e.codedept where nomdept =" +
                     "'" + LB_Dept.Text + "'";
                 OracleDataAdapter oraliste = new OracleDataAdapter(sqlLISTES, conn);
 
@@ -219,7 +214,7 @@ namespace FormAdoNet
 
                 UpdateTextBox();
             }
-            catch (Exception ex)
+            catch (OracleException ex)
             {
                 MessageBox.Show(ex.Message.ToString());
             }
@@ -227,7 +222,7 @@ namespace FormAdoNet
 
         private void BTN_Add_Click(object sender, EventArgs e)
         {
-            string sqlIns = "insert into Employes(Nomemp, Prenomemp, salaireemp, dateembauche, codedept, numempresp) values (" + "'" + TB_Nom.Text + "'," + TB_Prenom.Text + "," + TB_Salaire.Text + "," + DTP_Embauche.Value.ToShortDateString() + +"," + ")";
+            string sqlIns = "insert into Employes(Nomemp, Prenomemp, salaireemp, dateembauche, codedept, numempresp) values (" + "'" + TB_Nom.Text + "'," + TB_Prenom.Text + "," + TB_Salaire.Text + "," + DTP_Embauche.Value.ToShortDateString() + "," + ")";
             try
             {
                 OracleCommand orainsert = new OracleCommand(sqlIns, conn);
@@ -236,7 +231,7 @@ namespace FormAdoNet
 
                 vider();
             }
-            catch (Exception ex)
+            catch (OracleException ex)
             {
                 MessageBox.Show(ex.Message.ToString());
             }
@@ -273,7 +268,7 @@ namespace FormAdoNet
 
         private void BTN_Supprimer_Click(object sender, EventArgs e)
         {
-            string sqldel = "delete from DISQUES where NODISQUE = " + TB_NoEMP.Text;
+            string sqldel = "delete from Employes where numemp = " + TB_NoEMP.Text;
             try
             {
                 OracleCommand orainsert = new OracleCommand(sqldel, conn);
@@ -291,51 +286,50 @@ namespace FormAdoNet
 
         private void BTN_Mod_Click(object sender, EventArgs e)
         {
-            try
+            Ajouter_modifier Modifier = new Ajouter_modifier();
+
+            Modifier.conn = this.conn;
+            Modifier.Text = "Modification";
+            Modifier.Numemp = TB_NoEMP.Text;
+            Modifier.nomEmp = TB_Nom.Text;
+            Modifier.prenomEmp = TB_Prenom.Text;
+            Modifier.salaire = TB_Salaire.Text;
+            Modifier.Embauche = DTP_Embauche.Value.ToString();
+            Modifier.CodeDept = Codedept;
+            Modifier.Empresp = CB_EMPRESP.Text;
+            
+            if(Modifier.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                string sqlModifier = "Update Disques set TitreDisque =:TitreDisque, DureeMinutesDisque =:DureeMinutesDisque, " +
-                "AnnéeDisque =:AnnéeDisque, NoCie =:NoCie Where NoDisque =:NoDisque";
-                OracleCommand oraUpdate = new OracleCommand(sqlModifier, conn);
-                OracleParameter paramTitre = new OracleParameter(":TitreDisque", OracleDbType.Varchar2, 30);
-                OracleParameter paramDuree = new OracleParameter(":DureeMinutesDisque", OracleDbType.Int32);
-                OracleParameter paramAnnee = new OracleParameter(":AnnéeDisque", OracleDbType.Int32);
-                OracleParameter paramCie = new OracleParameter(":NoCie", OracleDbType.Int32);
-                OracleParameter paramDisc = new OracleParameter(":NoDisque", OracleDbType.Int32);
-                paramTitre.Value = TB_Nom.Text;
-                paramDuree.Value = TB_Prenom.Text;
-                paramAnnee.Value = TB_Salaire.Text;
-                paramDisc.Value = int.Parse(TB_NoEMP.Text);
-                if (!Verification())
+                try
                 {
-                    oraUpdate.Parameters.Add(paramTitre);
-                    oraUpdate.Parameters.Add(paramDuree);
-                    oraUpdate.Parameters.Add(paramAnnee);
-                    oraUpdate.Parameters.Add(paramCie);
-                    oraUpdate.Parameters.Add(paramDisc);
-                    oraUpdate.ExecuteNonQuery();
-                    MessageBox.Show("Le disque a été modifié");
+                    string sqlModifier = "Update employes set nomemp =:Nomemp, prenomemp =:Prenomemp, " +
+                    "salaireemp =:Salaireemp, DateEmbauche = :Date, codedept = :CodeDept , NumempResp = :NumEmpResp Where Numemp =:NumEmp";
+
+                    OracleCommand oraUpdate = new OracleCommand(sqlModifier, conn);
+                    OracleParameter paramNom = new OracleParameter(":Nomemp", OracleDbType.Varchar2, 40);
+                    OracleParameter paramPrenom = new OracleParameter(":Prenomemp", OracleDbType.Varchar2, 40);
+                    OracleParameter paramSalaire = new OracleParameter(":Salaireemp", OracleDbType.Int32,8);
+                    OracleParameter paramDate = new OracleParameter(":Date", OracleDbType.Date);
+                    OracleParameter paramCodedept = new OracleParameter(":CodeDept", OracleDbType.Char,5);
+                    OracleParameter paramNumResp = new OracleParameter(":NumEmpResp", OracleDbType.Int32, 5);
+                    OracleParameter paramNumemp = new OracleParameter(":NumEmp", OracleDbType.Int32, 5);
+
+                    paramNom.Value = Modifier.nomEmp;
+                    paramPrenom.Value = TB_Prenom.Text;
+                    paramSalaire.Value = TB_Salaire.Text;
+                    paramDate.Value = DTP_Embauche.Value;
+                    paramCodedept.Value = Modifier.CodeDept;
+                    paramNumResp.Value = Modifier.Empresp;
+                    paramNumemp.Value = Modifier.Numemp;
+
+
+                }
+                catch (OracleException ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
         }
-        private bool Verification()
-        {
-            if (Convert.ToInt32(TB_Salaire.Text) < ANNEEMIN || Convert.ToInt32(TB_Salaire.Text) > ANNEEMAX)
-            {
-                MessageBox.Show("L'année doit être entre 1920 et " + ANNEEMAX);
-                return true;
-            }
-            if (Convert.ToInt32(TB_Prenom.Text) < 0)
-            {
-                MessageBox.Show("La durée d'un disque doit être positive");
-                return true;
-            }
-            return false;
-        }
-
     }
 }
 
