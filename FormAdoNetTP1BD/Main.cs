@@ -42,6 +42,25 @@ namespace FormAdoNet
                 LB_Dept.Enabled = false;
                 BTN_Add.Enabled = false;
             }
+            if (TB_NoEMP.Text == "")
+            {
+                BTN_First.Enabled = false;
+                BTN_Prec.Enabled = false;
+                BTN_Suivant.Enabled = false;
+                BTN_Fin.Enabled = false;
+                BTN_Mod.Enabled = false;
+                BTN_Supprimer.Enabled = false;
+            }
+            else
+            {
+                BTN_First.Enabled = true;
+                BTN_Prec.Enabled = true;
+                BTN_Suivant.Enabled = true;
+                BTN_Fin.Enabled = true;
+                BTN_Mod.Enabled = true;
+                BTN_Supprimer.Enabled = true;
+
+            }
         }
 
         private void UpdateTextBox()
@@ -51,7 +70,10 @@ namespace FormAdoNet
             TB_Prenom.DataBindings.Add("text", Data, "Resultats.Prenomemp");
             TB_Salaire.DataBindings.Add("text", Data, "Resultats.Salaireemp");
             DTP_Embauche.DataBindings.Add("text", Data, "Resultats.DateEmbauche");
-            CB_EMPRESP.DataBindings.Add("text", Data, "Resultats.Numempresp");
+            CB_EMPRESP.DataBindings.Add("text", Data, "Resultats.NumEmpresp");
+
+            UpdateControls();
+
         }
         private void ClearBindings()
         {
@@ -173,8 +195,7 @@ namespace FormAdoNet
                 }
                 
                 
-                string sqlLISTES = "select numemp, nomemp, prenomemp, salaireemp, dateembauche, numempresp from employes e" + " inner join departements d on d.codedept = e.codedept where nomdept =" +
-                    "'" + LB_Dept.Text + "'";
+                string sqlLISTES = "select numemp, nomemp, prenomemp, salaireemp, dateembauche, e.numempresp from employes e inner join departements d on d.codedept = e.codedept where nomdept = '" + LB_Dept.Text +"'";
                 OracleDataAdapter oraliste = new OracleDataAdapter(sqlLISTES, conn);
 
                 if (Data.Tables.Contains("Resultats"))
@@ -198,12 +219,12 @@ namespace FormAdoNet
             Ajouter_modifier Ajouter = new Ajouter_modifier();
 
             Ajouter.conn = this.conn;
-            Ajouter.Text = "Modification";
+            Ajouter.Text = "Ajout";
             Ajouter.CodeDept = Codedept;
             if (Ajouter.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                     string sqlIns = "insert into Employes(Nomemp, Prenomemp, salaireemp, dateembauche, codedept, numempresp) "
-                        + "values (:NomEmp,:PrenomEmp,:Salaireemp,:DateEmbauche,:CodeDept,:NumEmpresp  )";
+                        + "values (:NomEmp,:PrenomEmp,:Salaireemp,:DateEmbauche,:CodeDept,:NumEmpresp )";
                     try
                     {
 
@@ -211,7 +232,7 @@ namespace FormAdoNet
 
                         OracleParameter OraParaNomEmp = new OracleParameter(":NomEmp", OracleDbType.Varchar2, 40);
                         OracleParameter OraParaPrenomEmp = new OracleParameter(":PrenomEmp", OracleDbType.Varchar2, 40);
-                        OracleParameter OraParaSalaireemp = new OracleParameter(":Salaireemp", OracleDbType.Int32, 6);  //Ajout
+                        OracleParameter OraParaSalaireemp = new OracleParameter(":Salaireemp", OracleDbType.Int32, 8);  //Ajout
                         OracleParameter OraParaDateEmbauche = new OracleParameter(":DateEmbauche", OracleDbType.Date);
                         OracleParameter OraParaCodeDept = new OracleParameter(":CodeDept", OracleDbType.Char, 5);
                         OracleParameter OraParaNumEmpresp = new OracleParameter(":NumEmpresp", OracleDbType.Int32, 5);
@@ -308,13 +329,13 @@ namespace FormAdoNet
                 try
                 {
                     string sqlModifier = "Update employes set nomemp =:Nomemp, prenomemp =:Prenomemp, " +
-                    "salaireemp =:Salaireemp, DateEmbauche = :Date, codedept = :CodeDept , NumempResp = :NumEmpResp Where Numemp =:NumEmp";
+                    "salaireemp =:Salaireemp, DateEmbauche = :Dateembauche, codedept = :CodeDept , NumempResp = :NumEmpResp Where Numemp =:NumEmp";
 
                     OracleCommand oraUpdate = new OracleCommand(sqlModifier, conn);
                     OracleParameter paramNom = new OracleParameter(":Nomemp", OracleDbType.Varchar2, 40);
                     OracleParameter paramPrenom = new OracleParameter(":Prenomemp", OracleDbType.Varchar2, 40);
                     OracleParameter paramSalaire = new OracleParameter(":Salaireemp", OracleDbType.Int32,8);
-                    OracleParameter paramDate = new OracleParameter(":Date", OracleDbType.Date);
+                    OracleParameter paramDate = new OracleParameter(":Dateembauche", OracleDbType.Date);
                     OracleParameter paramCodedept = new OracleParameter(":CodeDept", OracleDbType.Char,5);
                     OracleParameter paramNumResp = new OracleParameter(":NumEmpResp", OracleDbType.Int32, 5);
                     OracleParameter paramNumemp = new OracleParameter(":NumEmp", OracleDbType.Int32, 5);
@@ -324,10 +345,23 @@ namespace FormAdoNet
                     paramSalaire.Value = TB_Salaire.Text;
                     paramDate.Value = DTP_Embauche.Value;
                     paramCodedept.Value = Modifier.CodeDept;
-                    paramNumResp.Value = Modifier.Empresp;
+                    if (Modifier.Empresp != "")
+                        paramNumResp.Value = Modifier.Empresp;
+                    else
+                        paramNumResp.Value = null;
                     paramNumemp.Value = Modifier.Numemp;
-                    Lister();
 
+                    oraUpdate.Parameters.Add(paramNom);
+                    oraUpdate.Parameters.Add(paramPrenom);
+                    oraUpdate.Parameters.Add(paramSalaire);
+                    oraUpdate.Parameters.Add(paramDate);
+                    oraUpdate.Parameters.Add(paramCodedept);
+                    oraUpdate.Parameters.Add(paramNumResp);
+                    oraUpdate.Parameters.Add(paramNumemp);
+
+                    oraUpdate.ExecuteNonQuery();
+
+                    Lister();
                 }
                 catch (OracleException ex)
                 {

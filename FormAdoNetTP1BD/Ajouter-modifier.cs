@@ -130,7 +130,7 @@ namespace FormAdoNet
                 {
                     while(orareademp.Read())
                     {
-                        CB_EMPRESP.Items.Add(orareademp.GetString(0));
+                        CB_EMPRESP.Items.Add(orareademp.GetInt32(0));
                     }
                 }
             }

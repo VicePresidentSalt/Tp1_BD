@@ -115,7 +115,6 @@
             this.TB_Prenom.Name = "TB_Prenom";
             this.TB_Prenom.Size = new System.Drawing.Size(117, 20);
             this.TB_Prenom.TabIndex = 7;
-            this.TB_Prenom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_Duree_KeyPress);
             // 
             // TB_Salaire
             // 

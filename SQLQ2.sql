@@ -71,8 +71,8 @@ ALTER TABLE Employes ADD CONSTRAINT Employes_Employes_FK FOREIGN KEY ( NumempRes
 Alter table Employes ADD Constraint CK_Salaire CHECK (Salaireemp > 0 and Salaireemp < 500000); 
 
 CREATE SEQUENCE SEQEMP INCREMENT BY 1 
-START WITH 0
-minvalue 0;
+START WITH 1
+minvalue 1;
 
 --create or replace 
 --trigger EMPINC
