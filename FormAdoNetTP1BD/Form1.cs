@@ -191,7 +191,7 @@ namespace FormAdoNet
             try
             {
                 OracleCommand oraSelect = conn.CreateCommand();
-                oraSelect.CommandText = "select codedept from departements where nomdept = " + LB_Dept.Text;
+                oraSelect.CommandText = "select codedept from departements where nomdept = '" + LB_Dept.Text + "'";
                 using (OracleDataReader oraReader = oraSelect.ExecuteReader())
                 {
                     if (oraReader.Read())
@@ -199,6 +199,7 @@ namespace FormAdoNet
                         Codedept = oraReader.GetString(0);
                     }
                 }
+                
                 
                 string sqlLISTES = "select numemp, nomemp, prenomemp, salaireemp, dateembauche from employes e" + " inner join departements d on d.codedept = e.codedept where nomdept =" +
                     "'" + LB_Dept.Text + "'";
