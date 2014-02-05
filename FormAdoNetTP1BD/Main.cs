@@ -259,11 +259,6 @@ namespace FormAdoNet
                     {
                         MessageBox.Show(ex.Message.ToString());
                     }
-                    catch (FormatException eXECEPTion)
-                    {
-                        MessageBox.Show(eXECEPTion.Message.ToString());
-
-                    }
                 
             }
 
@@ -355,9 +350,9 @@ namespace FormAdoNet
                     OracleParameter paramNumemp = new OracleParameter(":NumEmp", OracleDbType.Int32, 5);
 
                     paramNom.Value = Modifier.nomEmp;
-                    paramPrenom.Value = TB_Prenom.Text;
-                    paramSalaire.Value = TB_Salaire.Text;
-                    paramDate.Value = DTP_Embauche.Value;
+                    paramPrenom.Value = Modifier.prenomEmp;
+                    paramSalaire.Value = Modifier.salaire;
+                    paramDate.Value = DateTime.Parse(Modifier.Embauche);
                     paramCodedept.Value = Modifier.CodeDept;
                     if (Modifier.Empresp != "")
                         paramNumResp.Value = Modifier.Empresp;
