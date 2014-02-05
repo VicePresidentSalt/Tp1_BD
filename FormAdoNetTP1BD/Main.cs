@@ -193,7 +193,18 @@ namespace FormAdoNet
                         Codedept = oraReader.GetString(0);
                     }
                 }
-                
+
+                OracleCommand oranbemploye = conn.CreateCommand();
+                oranbemploye.CommandText = "select count(numemp) from employes where codedept = '" + Codedept + "'"; 
+                using(OracleDataReader reader = oranbemploye.ExecuteReader())
+                {
+                    if(reader.Read())
+                    {
+                        LB_NBEMP.Text = reader.GetInt32(0).ToString();
+                    }
+
+                }
+
                 
                 string sqlLISTES = "select numemp, nomemp, prenomemp, salaireemp, dateembauche, e.numempresp from employes e inner join departements d on d.codedept = e.codedept where nomdept = '" + LB_Dept.Text +"'";
                 OracleDataAdapter oraliste = new OracleDataAdapter(sqlLISTES, conn);

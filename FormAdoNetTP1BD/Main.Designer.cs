@@ -50,6 +50,9 @@
             this.DTP_Embauche = new System.Windows.Forms.DateTimePicker();
             this.CB_EMPRESP = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.LB_NBEMP = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // LB_Dept
@@ -73,7 +76,7 @@
             // 
             // BTN_Mod
             // 
-            this.BTN_Mod.Location = new System.Drawing.Point(382, 120);
+            this.BTN_Mod.Location = new System.Drawing.Point(382, 139);
             this.BTN_Mod.Name = "BTN_Mod";
             this.BTN_Mod.Size = new System.Drawing.Size(75, 23);
             this.BTN_Mod.TabIndex = 14;
@@ -83,7 +86,7 @@
             // 
             // BTN_Supprimer
             // 
-            this.BTN_Supprimer.Location = new System.Drawing.Point(382, 92);
+            this.BTN_Supprimer.Location = new System.Drawing.Point(382, 111);
             this.BTN_Supprimer.Name = "BTN_Supprimer";
             this.BTN_Supprimer.Size = new System.Drawing.Size(75, 23);
             this.BTN_Supprimer.TabIndex = 13;
@@ -204,7 +207,7 @@
             // 
             // BTN_Add
             // 
-            this.BTN_Add.Location = new System.Drawing.Point(382, 64);
+            this.BTN_Add.Location = new System.Drawing.Point(382, 83);
             this.BTN_Add.Name = "BTN_Add";
             this.BTN_Add.Size = new System.Drawing.Size(75, 23);
             this.BTN_Add.TabIndex = 12;
@@ -247,11 +250,30 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "No. Employe Resp.";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.LB_NBEMP);
+            this.groupBox1.Location = new System.Drawing.Point(382, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(75, 65);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Nombre d\'employés";
+            // 
+            // LB_NBEMP
+            // 
+            this.LB_NBEMP.AutoSize = true;
+            this.LB_NBEMP.Location = new System.Drawing.Point(33, 38);
+            this.LB_NBEMP.Name = "LB_NBEMP";
+            this.LB_NBEMP.Size = new System.Drawing.Size(0, 13);
+            this.LB_NBEMP.TabIndex = 0;
+            // 
             // GestionEmploye
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(469, 209);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.CB_EMPRESP);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DTP_Embauche);
@@ -278,6 +300,8 @@
             this.Name = "GestionEmploye";
             this.Text = "Gestion des employés";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -306,6 +330,8 @@
         private System.Windows.Forms.DateTimePicker DTP_Embauche;
         private System.Windows.Forms.ComboBox CB_EMPRESP;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label LB_NBEMP;
     }
 }
 
