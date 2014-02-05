@@ -274,13 +274,6 @@ namespace FormAdoNet
             }
 
         }
-        private void vider()
-        {
-            TB_NoEMP.Clear();
-            TB_Nom.Clear();
-            TB_Prenom.Clear();
-            TB_Salaire.Clear();
-        }
         private void premier_Click(object sender, EventArgs e)
         {
             this.BindingContext[Data, "Resultats"].Position = 0;
@@ -314,7 +307,7 @@ namespace FormAdoNet
                     orainsert.CommandType = CommandType.Text;
                     orainsert.ExecuteNonQuery();
 
-                    vider();
+                    Lister();
                 }
                 catch (OracleException ex)
                 {
