@@ -204,22 +204,13 @@ where prenomemp != 'Fafard'
 START WITH prenomemp ='Fafard' and nomemp = 'Savard'
 Connect by PRIOR numemp = Numempresp;
 --OK
---ou
-
---Select nomemp,prenomemp,numempresp
---From Employes 
---where numempresp =(Select numemp
---                   From Employes
---                   Where Prenomemp = 'Fafard'
---                   );
 
 --11
-Select nomemp,prenomemp
+Select nomemp,prenomemp,numempresp
 From Employes 
-where numemp =(Select numempresp
-               From Employes
-               Where PrenomEmp = 'Fafard'
-              );
+where prenomemp != 'Fafard'
+START WITH prenomemp ='Fafard' and nomemp = 'Savard'
+Connect by numemp = PRIOR Numempresp;
 --OK
 
 --12

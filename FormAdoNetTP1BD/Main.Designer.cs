@@ -297,6 +297,8 @@
             this.Controls.Add(this.LB_Dept);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "GestionEmploye";
             this.Text = "Gestion des employés";
             this.Load += new System.EventHandler(this.Form1_Load);

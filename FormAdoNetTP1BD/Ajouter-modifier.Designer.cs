@@ -122,7 +122,7 @@
             // TB_Salaire
             // 
             this.TB_Salaire.Location = new System.Drawing.Point(124, 101);
-            this.TB_Salaire.MaxLength = 6;
+            this.TB_Salaire.MaxLength = 9;
             this.TB_Salaire.Name = "TB_Salaire";
             this.TB_Salaire.Size = new System.Drawing.Size(123, 20);
             this.TB_Salaire.TabIndex = 7;

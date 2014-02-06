@@ -89,7 +89,7 @@ namespace FormAdoNet
             DTP_Embauche.Value = DateTime.Now;
             CB_EMPRESP.Text = " ";
             CB_EMPRESP.DataBindings.Clear();
-            
+
         }
 
 
@@ -195,18 +195,18 @@ namespace FormAdoNet
                 }
 
                 OracleCommand oranbemploye = conn.CreateCommand();
-                oranbemploye.CommandText = "select count(numemp) from employes where codedept = '" + Codedept + "'"; 
-                using(OracleDataReader reader = oranbemploye.ExecuteReader())
+                oranbemploye.CommandText = "select count(numemp) from employes where codedept = '" + Codedept + "'";
+                using (OracleDataReader reader = oranbemploye.ExecuteReader())
                 {
-                    if(reader.Read())
+                    if (reader.Read())
                     {
                         LB_NBEMP.Text = reader.GetInt32(0).ToString();
                     }
 
                 }
 
-                
-                string sqlLISTES = "select numemp, nomemp, prenomemp, salaireemp, dateembauche, e.numempresp from employes e inner join departements d on d.codedept = e.codedept where nomdept = '" + LB_Dept.Text +"'";
+
+                string sqlLISTES = "select numemp, nomemp, prenomemp, salaireemp, dateembauche, e.numempresp from employes e inner join departements d on d.codedept = e.codedept where nomdept = '" + LB_Dept.Text + "'";
                 OracleDataAdapter oraliste = new OracleDataAdapter(sqlLISTES, conn);
 
                 if (Data.Tables.Contains("Resultats"))
@@ -234,45 +234,50 @@ namespace FormAdoNet
             Ajouter.CodeDept = Codedept;
             if (Ajouter.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                    string sqlIns = "insert into Employes(Nomemp, Prenomemp, salaireemp, dateembauche, codedept, numempresp) "
-                        + "values (:NomEmp,:PrenomEmp,:Salaireemp,:DateEmbauche,:CodeDept,:NumEmpresp )";
-                    try
+                string sqlIns = "insert into Employes(Nomemp, Prenomemp, salaireemp, dateembauche, codedept, numempresp) "
+                    + "values (:NomEmp,:PrenomEmp,:Salaireemp,:DateEmbauche,:CodeDept,:NumEmpresp )";
+                try
+                {
+
+                    OracleCommand oraAjout = new OracleCommand(sqlIns, conn);
+
+                    OracleParameter OraParaNomEmp = new OracleParameter(":NomEmp", OracleDbType.Varchar2, 40);
+                    OracleParameter OraParaPrenomEmp = new OracleParameter(":PrenomEmp", OracleDbType.Varchar2, 40);
+                    OracleParameter OraParaSalaireemp = new OracleParameter(":Salaireemp", OracleDbType.Decimal, 8);  //Ajout
+                    OracleParameter OraParaDateEmbauche = new OracleParameter(":DateEmbauche", OracleDbType.Date);
+                    OracleParameter OraParaCodeDept = new OracleParameter(":CodeDept", OracleDbType.Char, 5);
+                    OracleParameter OraParaNumEmpresp = new OracleParameter(":NumEmpresp", OracleDbType.Int32, 5);
+
+                    OraParaNomEmp.Value = Ajouter.nomEmp;
+                    OraParaPrenomEmp.Value = Ajouter.prenomEmp;
+                    OraParaSalaireemp.Value = Ajouter.salaire;
+                    OraParaDateEmbauche.Value = DateTime.Parse(Ajouter.Embauche);
+                    OraParaCodeDept.Value = Ajouter.CodeDept;
+                    OraParaNumEmpresp.Value = Ajouter.Empresp;
+
+                    oraAjout.Parameters.Add(OraParaNomEmp);
+                    oraAjout.Parameters.Add(OraParaPrenomEmp);
+                    oraAjout.Parameters.Add(OraParaSalaireemp);
+                    oraAjout.Parameters.Add(OraParaDateEmbauche);
+                    oraAjout.Parameters.Add(OraParaCodeDept);
+                    oraAjout.Parameters.Add(OraParaNumEmpresp);
+
+                    oraAjout.ExecuteNonQuery();
+
+                    Lister();
+                }
+                catch (OracleException ex)
+                {
+                    if (ex.Number == 2290)
                     {
-
-                        OracleCommand oraAjout = new OracleCommand(sqlIns, conn);
-
-                        OracleParameter OraParaNomEmp = new OracleParameter(":NomEmp", OracleDbType.Varchar2, 40);
-                        OracleParameter OraParaPrenomEmp = new OracleParameter(":PrenomEmp", OracleDbType.Varchar2, 40);
-                        OracleParameter OraParaSalaireemp = new OracleParameter(":Salaireemp", OracleDbType.Int32, 8);  //Ajout
-                        OracleParameter OraParaDateEmbauche = new OracleParameter(":DateEmbauche", OracleDbType.Date);
-                        OracleParameter OraParaCodeDept = new OracleParameter(":CodeDept", OracleDbType.Char, 5);
-                        OracleParameter OraParaNumEmpresp = new OracleParameter(":NumEmpresp", OracleDbType.Int32, 5);
-
-                        OraParaNomEmp.Value = Ajouter.nomEmp;
-                        OraParaPrenomEmp.Value = Ajouter.prenomEmp;
-                        OraParaSalaireemp.Value = Ajouter.salaire;
-                        OraParaDateEmbauche.Value = DateTime.Parse(Ajouter.Embauche);
-                        OraParaCodeDept.Value = Ajouter.CodeDept;
-                        OraParaNumEmpresp.Value = Ajouter.Empresp;
-
-                        oraAjout.Parameters.Add(OraParaNomEmp);
-                        oraAjout.Parameters.Add(OraParaPrenomEmp);
-                        oraAjout.Parameters.Add(OraParaSalaireemp);
-                        oraAjout.Parameters.Add(OraParaDateEmbauche);
-                        oraAjout.Parameters.Add(OraParaCodeDept);
-                        oraAjout.Parameters.Add(OraParaNumEmpresp);
-
-                        oraAjout.ExecuteNonQuery();
-
-                        Lister();
+                        MessageBox.Show("Le salaire doit être inférieur à 500 000.", "Erreur 2290", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    catch (OracleException ex)
+                    else
                     {
                         MessageBox.Show(ex.Message.ToString());
                     }
-                
+                }
             }
-
         }
         private void premier_Click(object sender, EventArgs e)
         {
@@ -336,8 +341,8 @@ namespace FormAdoNet
             Modifier.Embauche = DTP_Embauche.Value.ToString();
             Modifier.CodeDept = Codedept;
             Modifier.Empresp = CB_EMPRESP.Text;
-            
-            if(Modifier.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+
+            if (Modifier.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 try
                 {
@@ -347,9 +352,9 @@ namespace FormAdoNet
                     OracleCommand oraUpdate = new OracleCommand(sqlModifier, conn);
                     OracleParameter paramNom = new OracleParameter(":Nomemp", OracleDbType.Varchar2, 40);
                     OracleParameter paramPrenom = new OracleParameter(":Prenomemp", OracleDbType.Varchar2, 40);
-                    OracleParameter paramSalaire = new OracleParameter(":Salaireemp", OracleDbType.Int32,8);
+                    OracleParameter paramSalaire = new OracleParameter(":Salaireemp", OracleDbType.Decimal, 8);
                     OracleParameter paramDate = new OracleParameter(":Dateembauche", OracleDbType.Date);
-                    OracleParameter paramCodedept = new OracleParameter(":CodeDept", OracleDbType.Char,5);
+                    OracleParameter paramCodedept = new OracleParameter(":CodeDept", OracleDbType.Char, 5);
                     OracleParameter paramNumResp = new OracleParameter(":NumEmpResp", OracleDbType.Int32, 5);
                     OracleParameter paramNumemp = new OracleParameter(":NumEmp", OracleDbType.Int32, 5);
 
@@ -378,7 +383,14 @@ namespace FormAdoNet
                 }
                 catch (OracleException ex)
                 {
-                    MessageBox.Show(ex.Message.ToString());
+                    if (ex.Number == 2290)
+                    {
+                        MessageBox.Show("Le salaire doit être inférieur à 500 000.", "Erreur 2290", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
                 }
             }
         }
